@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Treuhand">
+  <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="100" y1="46" x2="100" y2="154"/>
+    <line x1="60" y1="154" x2="140" y2="154"/>
+    <path d="M52 80 l-16 32 a16 16 0 0 0 32 0 z"/>
+    <path d="M148 80 l-16 32 a16 16 0 0 0 32 0 z"/>
+    <line x1="52" y1="80" x2="148" y2="80"/>
+    <line x1="100" y1="46" x2="100" y2="64"/>
+  </g>
+</svg>

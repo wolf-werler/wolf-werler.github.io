@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>wolf-werler · Vorschau</title>
+  <meta name="description" content="Fünf Designrichtungen für wolf-werler.ch — wählen Sie eine."/>
+  <link rel="icon" href="shared/favicon.svg" type="image/svg+xml"/>
+  <style>
+    :root {
+      --ink: #111;
+      --paper: #f7f6f3;
+      --muted: #777;
+      --rule: #d8d6d0;
+      --mono: ui-monospace, "JetBrains Mono", "SF Mono", "Menlo", "Consolas", monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 13.5px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      letter-spacing: 0.005em;
+    }
+    .wrap { max-width: 1180px; padding: 48px 36px 96px; margin: 0 auto; }
+
+    header { display: flex; align-items: baseline; justify-content: space-between;
+      border-bottom: 1px solid var(--ink); padding-bottom: 18px; margin-bottom: 36px;
+      flex-wrap: wrap; gap: 12px; }
+    header .mark { font-weight: 700; letter-spacing: -0.01em; }
+    header .meta { color: var(--muted); }
+    header .meta b { color: var(--ink); font-weight: 600; }
+
+    .intro { max-width: 60ch; margin: 0 0 56px; }
+    .intro h1 { font-family: var(--mono); font-size: 22px; font-weight: 600;
+      letter-spacing: -0.01em; margin: 0 0 10px; }
+    .intro p { margin: 0; color: var(--muted); }
+    .intro p b { color: var(--ink); font-weight: 600; }
+
+    .sheet { display: grid; gap: 0; border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink); }
+    .row { display: grid;
+      grid-template-columns: 56px 1.4fr 1fr 1.1fr 140px;
+      align-items: stretch;
+      border-bottom: 1px solid var(--rule);
+      transition: background 120ms ease;
+    }
+    .row:last-child { border-bottom: 0; }
+    .row.head { background: var(--ink); color: var(--paper); }
+    .row.head .cell { color: var(--paper); font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em; font-size: 11px; }
+    .row:not(.head):hover { background: rgba(0,0,0,0.025); }
+
+    .cell { padding: 22px 18px; display: flex; flex-direction: column; gap: 6px;
+      justify-content: center; min-width: 0; }
+    .cell.num { font-weight: 700; font-size: 16px; letter-spacing: -0.02em;
+      align-items: flex-start; }
+    .cell.name strong { font-weight: 600; font-size: 14.5px; letter-spacing: -0.005em;
+      color: var(--ink); }
+    .cell.name span { color: var(--muted); }
+    .cell.type span { color: var(--ink); font-weight: 600; }
+    .cell.type em { font-style: normal; color: var(--muted); display: block;
+      font-size: 12px; }
+
+    .swatches { display: flex; gap: 4px; }
+    .swatches i { display: inline-block; width: 22px; height: 22px;
+      border: 1px solid rgba(0,0,0,0.1); border-radius: 3px; }
+
+    .open {
+      align-self: center; display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 14px; background: var(--ink); color: var(--paper);
+      text-decoration: none; font-weight: 600; font-size: 12px;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      transition: transform 120ms ease, background 120ms ease;
+      margin: 14px 18px;
+    }
+    .open:hover { transform: translateX(2px); background: #000; }
+    .open:focus-visible { outline: 2px solid #1E88E5; outline-offset: 3px; }
+
+    footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--rule);
+      display: grid; gap: 8px; color: var(--muted); }
+    footer code { background: rgba(0,0,0,0.05); padding: 1px 6px; border-radius: 3px;
+      font-family: var(--mono); }
+
+    @media (max-width: 880px) {
+      .row { grid-template-columns: 44px 1fr; }
+      .row.head { display: none; }
+      .cell { padding: 14px 16px; }
+      .cell.num { padding-top: 18px; }
+      .cell.type, .cell.palette, .open { grid-column: 2; padding-top: 0; padding-bottom: 0; }
+      .open { margin: 8px 16px 18px; align-self: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .open, .row { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="mark">wolf-werler · vorschau-blatt</div>
+      <div class="meta">5 richtungen · <b>1 wahl</b> · phase 01</div>
+    </header>
+
+    <section class="intro">
+      <h1>Fünf Designrichtungen. Gleicher Inhalt. Eine Wahl.</h1>
+      <p>
+        Jede Richtung zeigt <b>Home, Leistungen und Kontakt</b> mit denselben Platzhaltertexten.
+        Klicken Sie sich durch, vergleichen Sie Typografie, Farbe und Rhythmus,
+        und wählen Sie eine. Die anderen vier werden danach gelöscht.
+      </p>
+    </section>
+
+    <div class="sheet" role="table" aria-label="Designrichtungen">
+      <div class="row head" role="row">
+        <div class="cell num" role="columnheader">№</div>
+        <div class="cell name" role="columnheader">Richtung</div>
+        <div class="cell type" role="columnheader">Typografie</div>
+        <div class="cell palette" role="columnheader">Palette</div>
+        <div role="columnheader"><span class="sr">Öffnen</span></div>
+      </div>
+
+      <div class="row" role="row">
+        <div class="cell num" role="cell">01</div>
+        <div class="cell name" role="cell">
+          <strong>Swiss-minimal</strong>
+          <span>Raster, Ruhe, ein Akzent.</span>
+        </div>
+        <div class="cell type" role="cell">
+          <span>Switzer</span>
+          <em>einfamilienhaus</em>
+        </div>
+        <div class="cell palette" role="cell">
+          <div class="swatches" aria-hidden="true">
+            <i style="background:#FAFAFA"></i>
+            <i style="background:#0A0A0A"></i>
+            <i style="background:#E63946"></i>
+          </div>
+        </div>
+        <a class="open" href="styles/01-swiss-minimal/index.html">Öffnen →</a>
+      </div>
+
+      <div class="row" role="row">
+        <div class="cell num" role="cell">02</div>
+        <div class="cell name" role="cell">
+          <strong>Editorial-bold</strong>
+          <span>Magazin-Anmutung, grosse Serifen, Drop-Caps.</span>
+        </div>
+        <div class="cell type" role="cell">
+          <span>Fraunces + IBM Plex Sans</span>
+          <em>display-serife + body-sans</em>
+        </div>
+        <div class="cell palette" role="cell">
+          <div class="swatches" aria-hidden="true">
+            <i style="background:#F5F1EA"></i>
+            <i style="background:#111111"></i>
+            <i style="background:#C58A2E"></i>
+          </div>
+        </div>
+        <a class="open" href="styles/02-editorial-bold/index.html">Öffnen →</a>
+      </div>
+
+      <div class="row" role="row">
+        <div class="cell num" role="cell">03</div>
+        <div class="cell name" role="cell">
+          <strong>Corporate-trust</strong>
+          <span>Strukturierte Karten, klare Hierarchie, vertrauenerweckend.</span>
+        </div>
+        <div class="cell type" role="cell">
+          <span>Cabinet Grotesk + Synonym</span>
+          <em>display + body</em>
+        </div>
+        <div class="cell palette" role="cell">
+          <div class="swatches" aria-hidden="true">
+            <i style="background:#F4F7FB"></i>
+            <i style="background:#0B2545"></i>
+            <i style="background:#13315C"></i>
+            <i style="background:#1E88E5"></i>
+          </div>
+        </div>
+        <a class="open" href="styles/03-corporate-trust/index.html">Öffnen →</a>
+      </div>
+
+      <div class="row" role="row">
+        <div class="cell num" role="cell">04</div>
+        <div class="cell name" role="cell">
+          <strong>Playful-founder</strong>
+          <span>Persönlich, warm, Team im Zentrum. Du-Form.</span>
+        </div>
+        <div class="cell type" role="cell">
+          <span>Bricolage Grotesque + Caveat</span>
+          <em>display + handschrift-akzent</em>
+        </div>
+        <div class="cell palette" role="cell">
+          <div class="swatches" aria-hidden="true">
+            <i style="background:#FFF8EE"></i>
+            <i style="background:#3D2C3F"></i>
+            <i style="background:#D96E4B"></i>
+            <i style="background:#7A9E7E"></i>
+          </div>
+        </div>
+        <a class="open" href="styles/04-playful-founder/index.html">Öffnen →</a>
+      </div>
+
+      <div class="row" role="row">
+        <div class="cell num" role="cell">05</div>
+        <div class="cell name" role="cell">
+          <strong>Boutique-warm</strong>
+          <span>Verfeinert, Architekturbüro-Anmutung, Messing-Akzent.</span>
+        </div>
+        <div class="cell type" role="cell">
+          <span>Boska + General Sans</span>
+          <em>display-serife + body-sans</em>
+        </div>
+        <div class="cell palette" role="cell">
+          <div class="swatches" aria-hidden="true">
+            <i style="background:#F6F1E7"></i>
+            <i style="background:#1C1A17"></i>
+            <i style="background:#A08456"></i>
+          </div>
+        </div>
+        <a class="open" href="styles/05-boutique-warm/index.html">Öffnen →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div>Pro Richtung verfügbar: <b>Start · Leistungen · Kontakt</b>. Restliche Seiten folgen nach Wahl.</div>
+      <div>Hinweis: Das Kontaktformular ist verdrahtet auf <code>api.wolf-werler.ch/contact</code>, sendet in der Vorschau aber nichts — der Worker existiert noch nicht.</div>
+      <div>Inhalt: identische Platzhaltertexte aus <code>shared/content.js</code>. Bewerten Sie die Optik.</div>
+    </footer>
+  </div>
+</body>
+</html>

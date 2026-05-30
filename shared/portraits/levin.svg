@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 300" role="img" aria-label="Portrait-Platzhalter: Levin Wolf">
+  <rect width="240" height="300" fill="currentColor" opacity="0.06"/>
+  <g fill="currentColor">
+    <circle cx="120" cy="118" r="46"/>
+    <path d="M40 300c0-52 36-92 80-92s80 40 80 92z"/>
+  </g>
+  <g stroke="currentColor" stroke-width="1" fill="none" opacity="0.35">
+    <rect x="0.5" y="0.5" width="239" height="299"/>
+  </g>
+</svg>

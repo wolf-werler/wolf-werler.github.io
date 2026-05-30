@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Kontakt — wolf-werler</title>
+  <meta name="description" content="Erzählen Sie uns von Ihrem Projekt — wir melden uns innerhalb von zwei Werktagen."/>
+  <link rel="canonical" href="https://wolf-werler.ch/kontakt"/>
+  <link rel="icon" href="../../shared/favicon.svg" type="image/svg+xml"/>
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin/>
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=boska@400,500,600,700,400i,500i,600i&f[]=general-sans@300,400,500,600&display=swap"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="index.html">wolf<span class="mark"> · </span>werler</a>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="index.html" data-content="nav.home">Start</a>
+        <a href="leistungen.html" data-content="nav.services">Leistungen</a>
+        <a href="kontakt.html" aria-current="page" data-content="nav.contact">Kontakt</a>
+      </nav>
+      <div class="header-meta">Kapitel — Kontakt</div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-intro">
+      <div class="shell">
+        <div class="label">II — Kontakt <span class="num">eine Anfrage</span></div>
+        <h1>Erzählen Sie uns von Ihrem <em>Projekt</em>.</h1>
+        <p class="lede" data-content="form.sub">·</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell contact-grid">
+        <form class="contact-form" data-contact-form novalidate>
+          <div class="field">
+            <label for="name" data-content="form.fields.nameLabel">Name</label>
+            <input id="name" name="name" type="text" required autocomplete="name" data-placeholder-source="form.fields.namePlaceholder"/>
+          </div>
+          <div class="field">
+            <label for="email" data-content="form.fields.emailLabel">E-Mail</label>
+            <input id="email" name="email" type="email" required autocomplete="email" data-placeholder-source="form.fields.emailPlaceholder"/>
+          </div>
+          <div class="field">
+            <label for="company" data-content="form.fields.companyLabel">Unternehmen</label>
+            <input id="company" name="company" type="text" autocomplete="organization" data-placeholder-source="form.fields.companyPlaceholder"/>
+          </div>
+          <div class="field">
+            <label for="message" data-content="form.fields.messageLabel">Worum geht es?</label>
+            <textarea id="message" name="message" required rows="6" data-placeholder-source="form.fields.messagePlaceholder"></textarea>
+          </div>
+
+          <div class="honeypot" aria-hidden="true">
+            <label for="website">Website</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off"/>
+          </div>
+
+          <div class="turnstile-slot" data-turnstile>
+            Spamschutz (Cloudflare Turnstile) — Platzhalter, wird beim Worker-Setup aktiviert.
+          </div>
+
+          <div class="form-footer">
+            <button class="btn btn--brass" type="submit">
+              <span data-content="form.fields.submit">Anfrage senden</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </button>
+            <p class="privacy" data-content="form.privacy">·</p>
+          </div>
+
+          <div class="form-notice" data-form-notice hidden></div>
+        </form>
+
+        <aside class="contact-aside">
+          <div class="row">
+            <div class="label">— E-Mail —</div>
+            <div class="value"><a href="mailto:hallo@wolf-werler.ch" data-content="footer.email">hallo@wolf-werler.ch</a></div>
+          </div>
+          <div class="ornament" aria-hidden="true"></div>
+          <div class="row">
+            <div class="label">— Standort —</div>
+            <div class="value" data-content="footer.location">Schweiz</div>
+          </div>
+          <div class="ornament" aria-hidden="true"></div>
+          <div class="row">
+            <div class="label">— Antwortzeit —</div>
+            <div class="value">≤ 2 Werktage</div>
+          </div>
+          <div class="ornament" aria-hidden="true"></div>
+          <div class="row">
+            <div class="label">— Sprachen —</div>
+            <div class="value">Deutsch · English</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <div class="foot-row">
+        <div class="foot-brand">
+          <div class="brand-mark">wolf<span class="mark"> · </span>werler</div>
+          <p data-content="footer.tagline">·</p>
+        </div>
+        <div class="foot-col">
+          <h4>Leistungen</h4>
+          <ul>
+            <li><a href="leistungen.html" data-content="services.0.title">Design</a></li>
+            <li><a href="leistungen.html" data-content="services.1.title">Hosting</a></li>
+            <li><a href="leistungen.html" data-content="services.2.title">Verwaltung</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h4>Werkstatt</h4>
+          <ul>
+            <li><a href="kontakt.html" data-content="nav.contact">Kontakt</a></li>
+            <li><a href="#" data-content="footer.imprintLink">Impressum</a></li>
+            <li><a href="#" data-content="footer.privacyLink">Datenschutz</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h4>Kontakt</h4>
+          <ul>
+            <li><a href="mailto:hallo@wolf-werler.ch" data-content="footer.email">hallo@wolf-werler.ch</a></li>
+            <li><span data-content="footer.location">Schweiz</span></li>
+            <li>Antwort ≤ 2 Werktage</li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-legal">
+        <span>© <span data-content="footer.year"></span> wolf-werler.ch</span>
+        <span>Vorschau · Stil 05 — boutique-warm</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../shared/content.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

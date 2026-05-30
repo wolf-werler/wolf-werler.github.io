@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 300" role="img" aria-label="Portrait-Platzhalter: Paul Ernst Werler">
+  <rect width="240" height="300" fill="currentColor" opacity="0.06"/>
+  <g fill="currentColor">
+    <circle cx="120" cy="114" r="44"/>
+    <path d="M44 300c0-50 34-90 76-90s76 40 76 90z"/>
+    <rect x="98" y="148" width="44" height="14" rx="2" opacity="0.4"/>
+  </g>
+  <g stroke="currentColor" stroke-width="1" fill="none" opacity="0.35">
+    <rect x="0.5" y="0.5" width="239" height="299"/>
+  </g>
+</svg>

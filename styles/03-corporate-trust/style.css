@@ -1,0 +1,551 @@
+/* 03 corporate-trust · style.css
+ * Breakpoints: 360 · 768 · 1024 · 1280
+ * Display: Cabinet Grotesk (weights 500 / 700 / 800)
+ * Body:    Synonym (weights 400 / 500 / 600)
+ * Palette: surface #F4F7FB · ink-navy #0B2545 · ink-blue #13315C ·
+ *          accent #1E88E5 · ring #D9E3F0
+ * Vibe: structured cards, sticky nav with CTA, reassuring B2B vendor.
+ */
+
+:root {
+  --surface: #F4F7FB;
+  --surface-2: #EAF0F8;
+  --paper: #FFFFFF;
+  --ink: #0B2545;
+  --ink-2: #13315C;
+  --muted: #5D6F89;
+  --muted-soft: #8898AC;
+  --accent: #1E88E5;
+  --accent-deep: #1467B5;
+  --ring: #D9E3F0;
+  --rule: #E1E8F2;
+  --good: #16A07C;
+
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+
+  --shadow-sm: 0 1px 2px rgba(11,37,69,0.04), 0 1px 4px rgba(11,37,69,0.06);
+  --shadow-md: 0 4px 12px rgba(11,37,69,0.06), 0 2px 6px rgba(11,37,69,0.04);
+  --shadow-lg: 0 16px 40px rgba(11,37,69,0.10), 0 6px 16px rgba(11,37,69,0.06);
+
+  --pad-x: clamp(20px, 4vw, 56px);
+  --max: 1240px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: var(--surface);
+  color: var(--ink);
+  font-family: "Synonym", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+::selection { background: var(--accent); color: var(--paper); }
+
+.display { font-family: "Cabinet Grotesk", system-ui, sans-serif; font-weight: 700; letter-spacing: -0.02em; }
+
+.shell { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad-x); }
+
+/* Sticky header ---------------------------------------------------------- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(244,247,251,0.85);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  backdrop-filter: saturate(160%) blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+.site-header .shell {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 14px; padding-bottom: 14px; gap: 16px;
+}
+.brand {
+  font-family: "Cabinet Grotesk", system-ui, sans-serif;
+  font-weight: 800; font-size: 20px; letter-spacing: -0.02em;
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--ink);
+}
+.brand .mark {
+  width: 28px; height: 28px; border-radius: 7px;
+  background: linear-gradient(135deg, var(--ink) 0%, var(--accent) 100%);
+  display: grid; place-items: center;
+  color: var(--paper); font-size: 14px; font-weight: 800;
+  box-shadow: 0 4px 10px rgba(30,136,229,0.3);
+}
+.nav-cluster { display: flex; align-items: center; gap: 8px; }
+.nav { display: flex; gap: 6px; }
+.nav a {
+  font-size: 14.5px; font-weight: 500; color: var(--ink-2);
+  padding: 8px 14px; border-radius: var(--r-sm);
+  transition: background 140ms ease, color 140ms ease;
+}
+.nav a:hover { background: var(--surface-2); color: var(--ink); }
+.nav a[aria-current="page"] { color: var(--accent-deep); background: rgba(30,136,229,0.08); }
+.nav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Buttons ---------------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: "Cabinet Grotesk", system-ui, sans-serif;
+  font-weight: 700; font-size: 14.5px; letter-spacing: -0.005em;
+  padding: 11px 18px; border-radius: var(--r-sm);
+  background: var(--ink); color: var(--paper);
+  border: 1px solid var(--ink);
+  box-shadow: var(--shadow-sm);
+  transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+.btn:hover { background: var(--accent-deep); border-color: var(--accent-deep); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.btn--accent { background: var(--accent); border-color: var(--accent); }
+.btn--accent:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
+.btn--ghost { background: var(--paper); color: var(--ink); border-color: var(--ring); }
+.btn--ghost:hover { background: var(--surface-2); color: var(--ink); border-color: var(--ink); }
+.btn .arrow { transition: transform 160ms ease; }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* Hero ------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  padding: clamp(64px, 9vw, 128px) 0 clamp(56px, 7vw, 96px);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(30,136,229,0.10) 0%, transparent 50%),
+    radial-gradient(circle at 95% 10%, rgba(11,37,69,0.10) 0%, transparent 45%),
+    linear-gradient(to bottom, var(--surface) 0%, var(--paper) 100%);
+}
+.hero::after {
+  content: ""; position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(11,37,69,0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(11,37,69,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none; mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+}
+.hero .shell { position: relative; z-index: 1; }
+.hero .pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 12px; border-radius: 999px;
+  background: var(--paper); border: 1px solid var(--ring);
+  font-size: 12.5px; font-weight: 500; color: var(--ink-2);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 24px;
+}
+.hero .pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--good); }
+.hero h1 {
+  font-family: "Cabinet Grotesk", system-ui, sans-serif;
+  font-weight: 800; font-size: clamp(36px, 6.4vw, 80px);
+  line-height: 1.02; letter-spacing: -0.035em;
+  margin: 0; max-width: 18ch; text-wrap: balance;
+  color: var(--ink);
+}
+.hero h1 .accent { color: var(--accent); }
+.hero .sub {
+  font-size: clamp(17px, 1.4vw, 19.5px); color: var(--ink-2);
+  max-width: 60ch; margin: 24px 0 32px;
+}
+.hero .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.trust-strip {
+  margin-top: clamp(56px, 7vw, 88px);
+  background: var(--paper);
+  border: 1px solid var(--ring);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+  padding: 28px 32px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+}
+.trust-strip .stat { display: grid; gap: 4px; }
+.trust-strip .stat .n {
+  font-family: "Cabinet Grotesk", system-ui, sans-serif;
+  font-size: clamp(26px, 3vw, 36px); font-weight: 800;
+  letter-spacing: -0.025em; color: var(--ink); line-height: 1;
+}
+.trust-strip .stat .n .accent { color: var(--accent); }
+.trust-strip .stat .label {
+  font-size: 12.5px; color: var(--muted); font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+
+/* Section ---------------------------------------------------------------- */
+.section { padding: clamp(64px, 8vw, 112px) 0; }
+.section-mast { text-align: center; max-width: 64ch; margin: 0 auto clamp(40px, 5vw, 64px); }
+.section-mast .kicker {
+  display: inline-block; padding: 4px 12px; border-radius: 999px;
+  background: rgba(30,136,229,0.1); color: var(--accent-deep);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; margin-bottom: 18px;
+}
+.section-mast h2 {
+  font-family: "Cabinet Grotesk", system-ui, sans-serif;
+  font-weight: 800; font-size: clamp(28px, 3.6vw, 48px);
+  letter-spacing: -0.03em; line-height: 1.05; margin: 0;
+  color: var(--ink); text-wrap: balance;
+}
+.section-mast .lede {
+  font-size: 17px; color: var(--ink-2); max-width: 56ch;
+  margin: 20px auto 0;
+}
+
+/* Services teaser (Home) ------------------------------------------------- */
+.services-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.svc-card {
+  background: var(--paper);
+  border: 1px solid var(--ring);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  display: grid; gap: 16px;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  position: relative;
+}
+.svc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent);
+}
+.svc-card .icon-wrap {
+  width: 48px; height: 48px; border-radius: var(--r-md);
+  background: linear-gradient(135deg, rgba(30,136,229,0.12) 0%, rgba(11,37,69,0.06) 100%);
+  display: grid; place-items: center; color: var(--accent-deep);
+}
+.svc-card .icon-wrap svg { width: 24px; height: 24px; }
+.svc-card h3 {
+  font-family: "Cabinet Grotesk", system-ui, sans-serif;
+  font-weight: 700; font-size: 22px; letter-spacing: -0.015em;
+  margin: 0; color: var(--ink);
+}
+.svc-card .kicker { color: var(--accent-deep); font-weight: 600; font-size: 14px; margin: -10px 0 0; }
+.svc-card .body { color: var(--ink-2); font-size: 14.5px; margin: 0; }
+.svc-card .more {
+  font-size: 13.5px; font-weight: 600; color: var(--accent-deep);
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 4px;
+}
+.svc-card .more .arrow { transition: transform 180ms ease; }
+.svc-card:hover .more .arrow { transform: translateX(3px); }
+
+/* Services full (Leistungen) -------------------------------------------- */
+.svc-detailed { display: grid; gap: 24px; }
+.svc-row {
+  background: var(--paper);
+  border: 1px solid var(--ring);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  overflow: hidden;
+}
+.svc-row .meta {
+  background: linear-gradient(160deg, var(--ink) 0%, var(--ink-2) 100%);
+  color: var(--paper);
+  padding: 36px 32px;
+  display: grid; gap: 18px; align-content: start;
+  position: relative; overflow: hidden;
+}
+.svc-row .meta::before {
+  content: ""; position: absolute; top: -40px; right: -40px;
+  width: 200px; height: 200px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(30,136,229,0.25) 0%, transparent 60%);
+}
+.svc-row .meta .num {
+  font-family: "Cabinet Grotesk", system-ui, sans-serif;
+  font-weight: 800; font-size: 14px;
+  letter-spacing: 0.12em; opacity: 0.6;
+  position: relative;
+}
+.svc-row .meta h2 {
+  font-family: "Cabinet Grotesk", system-ui, sans-serif;
+  font-weight: 800; font-size: clamp(32px, 4vw, 48px);
+  letter-spacing: -0.025em; line-height: 1; margin: 0;
+  position: relative;
+}
+.svc-row .meta .kicker { color: var(--accent); font-weight: 500; font-size: 16px; position: relative; }
+.svc-row .meta .icon-wrap {
+  width: 56px; height: 56px; border-radius: var(--r-md);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.16);
+  display: grid; place-items: center; color: var(--accent);
+  position: relative;
+}
+.svc-row .meta .icon-wrap svg { width: 28px; height: 28px; }
+.svc-row .body { padding: 36px 32px; }
+.svc-row .body p {
+  font-size: 16.5px; color: var(--ink-2); margin: 0 0 24px;
+}
+.svc-row .body ul {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.svc-row .body ul li {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14.5px; color: var(--ink-2);
+}
+.svc-row .body ul li::before {
+  content: ""; width: 18px; height: 18px; border-radius: 50%;
+  background: rgba(30,136,229,0.12);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'><path fill='none' stroke='%231467B5' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' d='M4.5 9.5l3 3 6-6'/></svg>");
+  background-size: 14px; background-position: center; background-repeat: no-repeat;
+  flex: 0 0 18px;
+}
+
+/* Portfolio -------------------------------------------------------------- */
+.portfolio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.work {
+  background: var(--paper);
+  border: 1px solid var(--ring);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  display: grid; grid-template-rows: auto 1fr;
+}
+.work:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.work .thumb {
+  aspect-ratio: 16 / 10;
+  display: grid; place-items: center;
+  position: relative;
+  background: linear-gradient(135deg, var(--surface-2) 0%, var(--ring) 100%);
+  color: var(--ink);
+  border-bottom: 1px solid var(--ring);
+}
+.work:nth-child(1) .thumb { background: linear-gradient(135deg, #DBE7F5 0%, #B6D1F0 100%); }
+.work:nth-child(2) .thumb { background: linear-gradient(135deg, #E6EDF5 0%, #C7D8EC 100%); }
+.work:nth-child(3) .thumb { background: linear-gradient(135deg, #D7E2EF 0%, #A4BDDA 100%); }
+.work:nth-child(4) .thumb { background: linear-gradient(135deg, #E2EBF4 0%, #C0D2E6 100%); }
+.work:nth-child(5) .thumb { background: linear-gradient(135deg, #D8E3F0 0%, #ADC4DD 100%); }
+.work:nth-child(6) .thumb { background: linear-gradient(135deg, #E5ECF4 0%, #BBCEE3 100%); }
+.work .thumb img { width: 44%; color: var(--ink); }
+.work .body {
+  padding: 20px 22px; display: grid; gap: 4px;
+}
+.work .meta {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted);
+}
+.work h3 {
+  font-family: "Cabinet Grotesk", system-ui, sans-serif;
+  font-weight: 700; font-size: 18.5px; letter-spacing: -0.01em;
+  margin: 0; color: var(--ink);
+}
+
+/* Team ------------------------------------------------------------------- */
+.team-row {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.team-card {
+  background: var(--paper);
+  border: 1px solid var(--ring);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  display: grid; gap: 12px;
+}
+.team-card .portrait {
+  width: 96px; height: 96px; border-radius: 50%;
+  background: var(--surface-2);
+  border: 3px solid var(--paper);
+  outline: 1px solid var(--ring);
+  margin: 0 auto;
+  overflow: hidden;
+  color: var(--ink);
+}
+.team-card .portrait img { width: 100%; height: 100%; object-fit: cover; }
+.team-card h3 {
+  font-family: "Cabinet Grotesk", system-ui, sans-serif;
+  font-weight: 700; font-size: 18px; letter-spacing: -0.01em;
+  margin: 4px 0 -2px; color: var(--ink);
+}
+.team-card .role {
+  font-size: 12.5px; font-weight: 600; color: var(--accent-deep);
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.team-card .bio { color: var(--ink-2); font-size: 14px; margin: 0; }
+
+/* CTA card --------------------------------------------------------------- */
+.cta-card {
+  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 60%, var(--accent-deep) 100%);
+  color: var(--paper);
+  border-radius: var(--r-lg);
+  padding: clamp(40px, 6vw, 72px);
+  display: grid; grid-template-columns: 1.4fr auto; gap: 32px; align-items: center;
+  position: relative; overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.cta-card::before {
+  content: ""; position: absolute; top: -100px; right: -100px;
+  width: 360px; height: 360px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(30,136,229,0.4) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-card h2 {
+  font-family: "Cabinet Grotesk", system-ui, sans-serif;
+  font-weight: 800; font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: -0.025em; line-height: 1.05;
+  margin: 0; text-wrap: balance; position: relative;
+}
+.cta-card p { color: rgba(255,255,255,0.75); font-size: 15.5px; margin: 12px 0 0; max-width: 48ch; position: relative; }
+.cta-card .btn { background: var(--paper); color: var(--ink); border-color: var(--paper); position: relative; }
+.cta-card .btn:hover { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+
+/* Page intro ------------------------------------------------------------- */
+.page-intro {
+  padding: clamp(72px, 9vw, 120px) 0 clamp(48px, 6vw, 80px);
+  background: linear-gradient(to bottom, var(--paper), var(--surface));
+  border-bottom: 1px solid var(--rule);
+  text-align: center;
+}
+.page-intro .pill {
+  display: inline-block; padding: 5px 12px; border-radius: 999px;
+  background: rgba(30,136,229,0.1); color: var(--accent-deep);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 18px;
+}
+.page-intro h1 {
+  font-family: "Cabinet Grotesk", system-ui, sans-serif;
+  font-weight: 800; font-size: clamp(40px, 6vw, 80px);
+  letter-spacing: -0.035em; line-height: 1; margin: 0 auto;
+  max-width: 16ch; color: var(--ink); text-wrap: balance;
+}
+.page-intro h1 .accent { color: var(--accent); }
+.page-intro .lede { font-size: 18px; color: var(--ink-2); max-width: 60ch; margin: 20px auto 0; }
+
+/* Contact form ----------------------------------------------------------- */
+.contact-wrap {
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 36px;
+  padding: clamp(56px, 8vw, 96px) 0;
+}
+.contact-card {
+  background: var(--paper);
+  border: 1px solid var(--ring);
+  border-radius: var(--r-lg);
+  padding: clamp(28px, 4vw, 44px);
+  box-shadow: var(--shadow-md);
+}
+.contact-card .form-head { margin-bottom: 24px; }
+.contact-card .form-head h2 {
+  font-family: "Cabinet Grotesk", system-ui, sans-serif;
+  font-weight: 800; font-size: 26px; letter-spacing: -0.02em; margin: 0;
+}
+.contact-card .form-head p { color: var(--muted); margin: 4px 0 0; font-size: 14px; }
+.contact-form { display: grid; gap: 18px; }
+.field { display: grid; gap: 6px; }
+.field label {
+  font-size: 13px; font-weight: 600; color: var(--ink);
+}
+.field input, .field textarea {
+  font: inherit; font-size: 15.5px;
+  padding: 12px 14px;
+  background: var(--surface); color: var(--ink);
+  border: 1px solid var(--ring);
+  border-radius: var(--r-sm);
+  width: 100%; outline: none;
+  transition: border-color 120ms ease, background 120ms ease, box-shadow 120ms ease;
+}
+.field input:focus, .field textarea:focus {
+  border-color: var(--accent); background: var(--paper);
+  box-shadow: 0 0 0 4px rgba(30,136,229,0.12);
+}
+.field input::placeholder, .field textarea::placeholder { color: var(--muted-soft); }
+.field textarea { resize: vertical; min-height: 130px; }
+.row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.turnstile-slot {
+  border: 1px dashed var(--ring);
+  padding: 12px 14px; font-size: 12.5px; color: var(--muted);
+  border-radius: var(--r-sm); background: var(--surface);
+}
+.form-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap; margin-top: 4px;
+}
+.form-footer .privacy { font-size: 12.5px; color: var(--muted); max-width: 50ch; }
+.form-notice {
+  border: 1px solid var(--accent); background: rgba(30,136,229,0.08);
+  padding: 14px 16px; border-radius: var(--r-sm);
+  color: var(--ink); font-size: 14.5px;
+}
+
+.contact-side { display: grid; gap: 18px; align-content: start; }
+.info-card {
+  background: var(--paper);
+  border: 1px solid var(--ring);
+  border-radius: var(--r-md);
+  padding: 20px 22px;
+  box-shadow: var(--shadow-sm);
+  display: grid; gap: 4px;
+}
+.info-card .label { font-size: 11.5px; font-weight: 600; color: var(--muted);
+  letter-spacing: 0.08em; text-transform: uppercase; }
+.info-card .value { font-family: "Cabinet Grotesk", system-ui, sans-serif;
+  font-weight: 700; font-size: 18px; color: var(--ink); }
+.info-card .value a { color: var(--accent-deep); }
+
+/* Footer ----------------------------------------------------------------- */
+.site-footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.7);
+  padding: 56px 0 28px;
+  margin-top: 64px;
+}
+.foot-row {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 32px;
+}
+.foot-row h4 {
+  font-family: "Cabinet Grotesk", system-ui, sans-serif;
+  font-weight: 700; font-size: 13.5px; color: var(--paper);
+  letter-spacing: 0.04em; text-transform: uppercase;
+  margin: 0 0 14px;
+}
+.foot-row ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.foot-row a { color: rgba(255,255,255,0.7); font-size: 14px; }
+.foot-row a:hover { color: var(--paper); }
+.foot-brand { display: grid; gap: 14px; max-width: 36ch; }
+.foot-brand .brand-mark {
+  font-family: "Cabinet Grotesk", system-ui, sans-serif;
+  font-weight: 800; font-size: 24px; color: var(--paper); letter-spacing: -0.02em;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.foot-brand .brand-mark .dot { width: 28px; height: 28px; border-radius: 7px;
+  background: linear-gradient(135deg, var(--paper) 0%, var(--accent) 100%);
+  color: var(--ink); display: grid; place-items: center; font-size: 14px; }
+.foot-brand p { color: rgba(255,255,255,0.6); font-size: 14px; margin: 0; }
+.foot-legal {
+  border-top: 1px solid rgba(255,255,255,0.12); margin-top: 40px; padding-top: 18px;
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  font-size: 12px; color: rgba(255,255,255,0.5);
+}
+
+/* Responsive ----------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .services-cards { grid-template-columns: 1fr 1fr; }
+  .svc-row { grid-template-columns: 1fr; }
+  .portfolio { grid-template-columns: 1fr 1fr; }
+  .team-row { grid-template-columns: 1fr 1fr; }
+  .cta-card { grid-template-columns: 1fr; gap: 24px; }
+  .contact-wrap { grid-template-columns: 1fr; }
+  .foot-row { grid-template-columns: 1fr 1fr; }
+  .trust-strip { grid-template-columns: 1fr 1fr; gap: 28px; }
+}
+@media (max-width: 768px) {
+  body { font-size: 15.5px; }
+  .nav { display: none; }
+  .services-cards { grid-template-columns: 1fr; }
+  .portfolio { grid-template-columns: 1fr; }
+  .team-row { grid-template-columns: 1fr; }
+  .row-2 { grid-template-columns: 1fr; }
+  .svc-row .body ul { grid-template-columns: 1fr; }
+  .foot-row { grid-template-columns: 1fr; }
+  .trust-strip { grid-template-columns: 1fr 1fr; padding: 22px 20px; }
+}
+@media (max-width: 460px) {
+  .trust-strip { grid-template-columns: 1fr; }
+}
