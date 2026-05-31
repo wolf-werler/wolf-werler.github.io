@@ -1,3 +1,121 @@
+(function () {
+  const root = document.documentElement;
+  const script = document.currentScript;
+  const storageKey = 'wolf-werler-theme';
+  const styleMatch = window.location.pathname.match(/\/styles\/(\d{2})-/);
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+
+  if (styleMatch) {
+    root.dataset.siteStyle = styleMatch[1];
+  }
+
+  function getStoredTheme() {
+    try {
+      const value = window.localStorage.getItem(storageKey);
+      return value === 'dark' || value === 'light' ? value : '';
+    } catch (error) {
+      return '';
+    }
+  }
+
+  function storeTheme(theme) {
+    try {
+      window.localStorage.setItem(storageKey, theme);
+    } catch (error) {
+      /* Private browsing can block storage; the live toggle still works. */
+    }
+  }
+
+  function setTheme(theme) {
+    root.dataset.theme = theme;
+    root.style.colorScheme = theme;
+    updateThemeButton(theme);
+  }
+
+  function updateThemeButton(theme) {
+    const button = document.querySelector('[data-theme-toggle]');
+    if (!button) return;
+
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+    const label = nextTheme === 'dark' ? 'Dunkles Design aktivieren' : 'Helles Design aktivieren';
+    button.setAttribute('aria-label', label);
+    button.setAttribute('title', label);
+    button.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+  }
+
+  function currentPreferredTheme() {
+    return getStoredTheme() || (prefersDark && prefersDark.matches ? 'dark' : 'light');
+  }
+
+  function injectThemeStyles() {
+    if (!script || document.querySelector('link[data-theme-styles]')) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = new URL('theme.css', script.src).href;
+    link.dataset.themeStyles = 'true';
+    document.head.appendChild(link);
+  }
+
+  function findThemeMount() {
+    return document.querySelector('.subnav .shell')
+      || document.querySelector('.nav-cluster')
+      || document.querySelector('.site-header .shell')
+      || document.querySelector('header');
+  }
+
+  function initThemeToggle() {
+    if (document.querySelector('[data-theme-toggle]')) {
+      updateThemeButton(root.dataset.theme || currentPreferredTheme());
+      return;
+    }
+
+    const mount = findThemeMount();
+    if (!mount) return;
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'theme-toggle';
+    button.dataset.themeToggle = 'true';
+    button.innerHTML = [
+      '<span class="theme-toggle__stars" aria-hidden="true"></span>',
+      '<span class="theme-toggle__orb" aria-hidden="true"></span>',
+      '<span class="theme-toggle__label">Theme wechseln</span>',
+    ].join('');
+
+    button.addEventListener('click', () => {
+      const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      storeTheme(nextTheme);
+      setTheme(nextTheme);
+    });
+
+    mount.appendChild(button);
+    updateThemeButton(root.dataset.theme || currentPreferredTheme());
+  }
+
+  injectThemeStyles();
+  setTheme(currentPreferredTheme());
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThemeToggle);
+  } else {
+    initThemeToggle();
+  }
+
+  if (prefersDark) {
+    const syncSystemTheme = () => {
+      if (!getStoredTheme()) {
+        setTheme(prefersDark.matches ? 'dark' : 'light');
+      }
+    };
+
+    if (typeof prefersDark.addEventListener === 'function') {
+      prefersDark.addEventListener('change', syncSystemTheme);
+    } else if (typeof prefersDark.addListener === 'function') {
+      prefersDark.addListener(syncSystemTheme);
+    }
+  }
+})();
+
 /*
  * shared/content.js
  *
