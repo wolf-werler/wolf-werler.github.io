@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://api.wolf-werler.ch; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.wolf-werler.ch; object-src 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
+  <title>Kontakt · Wolf · Werler</title>
+  <meta name="description" content="Erzählen Sie uns, was ansteht. Wir melden uns innert eines Arbeitstages." />
+
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+  <a class="site-logo" href="/" aria-label="Wolf · Werler — Startseite">
+    <img src="/logo.svg" alt="">
+  </a>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="wrap nav__inner">
+      <div class="nav__mark">
+        <a href="/">Wolf<span class="dot"></span><em>Werler</em></a>
+      </div>
+      <div class="nav__links">
+        <a href="/">Start</a>
+        <a href="/leistungen/">Leistungen</a>
+        <a href="/referenzen/">Referenzen</a>
+        <a href="/ueber/">Über uns</a>
+        <a href="/kontakt/" class="active">Kontakt</a>
+      </div>
+      <div class="nav__cta">
+        <a href="/kontakt/" class="btn">Anfragen</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- CONTACT -->
+    <section id="site-contact" class="contact">
+      <div class="wrap contact__grid">
+        <div>
+          <span class="label">Kontakt</span>
+          <h2>Erzählen Sie<br/>uns kurz, was<br/><em>ansteht</em>.</h2>
+          <p class="contact__lede">
+            Wir melden uns innert eines Arbeitstages. Kein
+            Anrufzentrum, kein Funnel. Nur eine kurze Antwort
+            von einem der drei Namen oben.
+          </p>
+
+          <dl class="contact__details">
+            <div>
+              <dt>Mail</dt>
+              <dd>
+                <a href="mailto:hallo@wolf-werler.ch">hallo@wolf-werler.ch</a>
+                <button type="button" class="copy-btn" data-copy="hallo@wolf-werler.ch" aria-label="Mail-Adresse kopieren">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                    <rect x="8" y="8" width="12" height="12" rx="1.5"/>
+                    <path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/>
+                  </svg>
+                  <span class="copy-btn__state">Kopieren</span>
+                </button>
+              </dd>
+            </div>
+            <div>
+              <dt>Telefon</dt>
+              <dd>
+                <a href="tel:+41786909676">+41 78 690 96 76</a>
+                <button type="button" class="copy-btn" data-copy="+41 78 690 96 76" aria-label="Telefonnummer kopieren">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                    <rect x="8" y="8" width="12" height="12" rx="1.5"/>
+                    <path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/>
+                  </svg>
+                  <span class="copy-btn__state">Kopieren</span>
+                </button>
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+        <form class="contact__form" id="contactForm" novalidate>
+          <div class="field">
+            <label for="site-name">Name</label>
+            <input id="site-name" name="name" type="text" autocomplete="name" required maxlength="200" placeholder="Vorname Nachname" />
+          </div>
+          <div class="field">
+            <label for="site-mail">Mail</label>
+            <input id="site-mail" name="email" type="email" autocomplete="email" required maxlength="200" placeholder="sie@firma.ch" />
+          </div>
+          <div class="field">
+            <label for="site-firma">Firma (optional)</label>
+            <input id="site-firma" name="subject" type="text" maxlength="200" placeholder="Ihre Firma" />
+          </div>
+          <div class="field">
+            <label for="site-msg">Worum geht es?</label>
+            <textarea id="site-msg" name="message" required rows="4" maxlength="5000" placeholder="Ein neuer Auftritt, eine Pflegeübernahme, eine Frage."></textarea>
+          </div>
+
+          <div aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0; pointer-events:none;">
+            <label for="site-website">Website</label>
+            <input id="site-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <input type="hidden" name="t" value="" />
+
+
+          <div class="btn-row" style="margin-top: 8px; align-items: center;">
+            <button type="submit" class="btn btn--light" id="contactSubmit">
+              <span>Senden</span>
+              <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <span class="label" id="contactStatus" aria-live="polite" style="color: var(--mist)">Antwort innert 24 h</span>
+          </div>
+          <p class="contact__notice label" hidden style="margin-top:18px; color: var(--fog)">
+            Danke. Ihre Anfrage ist notiert.
+          </p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot__inner">
+        <div>
+          <div class="foot__mark">Wolf<em>·</em>Werler</div>
+          <p class="label" style="margin-top:10px; color: var(--mist)">
+            Atelier · Zürich · Schweiz
+          </p>
+        </div>
+        <div class="foot__col">
+          <h4>Studio</h4>
+          <ul>
+            <li><a href="/leistungen/">Leistungen</a></li>
+            <li><a href="/referenzen/">Referenzen</a></li>
+            <li><a href="/ueber/">Über uns</a></li>
+          </ul>
+        </div>
+        <div class="foot__col">
+          <h4>Kontakt</h4>
+          <ul>
+            <li><a href="mailto:hallo@wolf-werler.ch">hallo@wolf-werler.ch</a></li>
+            <li><a href="tel:+41786909676">+41 78 690 96 76</a></li>
+            <li>Zürich · Schweiz</li>
+          </ul>
+        </div>
+        <div class="foot__col">
+          <h4>Rechtliches</h4>
+          <ul>
+            <li><a href="/impressum/">Impressum</a></li>
+            <li><a href="/datenschutz/">Datenschutz</a></li>
+            <li><a href="/agb/">AGB</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="foot__legal">
+        <span>© 2026 Wolf · Werler · Zürich</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/scripts.js"></script>
+</body>
+</html>

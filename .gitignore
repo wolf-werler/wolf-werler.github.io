@@ -3,3 +3,6 @@ node_modules/
 build/
 dist/
 public/
+
+MEMORY.md
+AGENTS.md

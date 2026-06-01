@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Phasuk Velo &amp; Mofa Service">
-  <rect width="64" height="64" fill="#111410"/>
-  <path d="M13 43h38" stroke="#fffdf8" stroke-width="5" stroke-linecap="square"/>
-  <circle cx="21" cy="43" r="8" fill="none" stroke="#c7352c" stroke-width="5"/>
-  <circle cx="45" cy="43" r="8" fill="none" stroke="#446f42" stroke-width="5"/>
-  <path d="M21 43l8-17h9l7 17M29 26l-3-7h8" fill="none" stroke="#fffdf8" stroke-width="5" stroke-linecap="square" stroke-linejoin="round"/>
-</svg>

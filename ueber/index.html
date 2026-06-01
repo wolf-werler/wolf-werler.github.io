@@ -6,8 +6,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://api.wolf-werler.ch; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.wolf-werler.ch; object-src 'none'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
-  <title>Wolf · Werler · Webseiten, die still ihre Arbeit tun</title>
-  <meta name="description" content="Wolf · Werler gestaltet, hostet und pflegt Webseiten für Schweizer KMU. Klein, langlebig, präzise." />
+  <title>Über uns · Wolf · Werler</title>
+  <meta name="description" content="Drei Personen, klare Rollen. Levin Wolf, Paul Ernst Werler und Isaac Lins." />
 
   <link rel="stylesheet" href="/styles.css" />
 </head>
@@ -24,10 +24,10 @@
         <a href="/">Wolf<span class="dot"></span><em>Werler</em></a>
       </div>
       <div class="nav__links">
-        <a href="/" class="active">Start</a>
+        <a href="/">Start</a>
         <a href="/leistungen/">Leistungen</a>
         <a href="/referenzen/">Referenzen</a>
-        <a href="/ueber/">Über uns</a>
+        <a href="/ueber/" class="active">Über uns</a>
         <a href="/kontakt/">Kontakt</a>
       </div>
       <div class="nav__cta">
@@ -38,43 +38,59 @@
 
   <main>
 
-    <!-- HERO -->
-    <header class="hero">
-      <div class="wrap hero__inner">
-        <div class="hero__eyebrow">
-          <span class="hair-line" aria-hidden="true"></span>
-          <span class="label label--ink">Atelier für Webgestaltung &amp; Verwaltung</span>
-        </div>
-        <h1>Webseiten, die <em>still</em> ihre Arbeit tun.</h1>
-        <p class="hero__lede">
-          Wir gestalten, hosten und pflegen Auftritte für Schweizer
-          KMU. Klein, langlebig, präzise. So wartungsarm, dass Sie
-          uns vergessen können.
-        </p>
-        <div class="hero__cta">
-          <a href="/kontakt/" class="btn">
-            Projekt besprechen
-            <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a href="/referenzen/" class="btn btn--ghost">Unsere Arbeit ansehen</a>
-        </div>
+    <!-- TEAM -->
+    <section class="team">
+      <div class="wrap">
+        <span class="label">Über uns</span>
+        <h2>Klein genug, dass Sie<br/>wissen, <em>wer Ihre Seite kennt</em>.</h2>
 
-        <dl class="hero__meta">
-          <div>
-            <dt>Sitz</dt>
-            <dd>Zürich · Schweiz</dd>
-          </div>
-          <div>
-            <dt>Im Atelier</dt>
-            <dd>Seit <em style="font-style:italic;color:var(--slate)">2022</em></dd>
-          </div>
-          <div>
-            <dt>Auftritte in Pflege</dt>
-            <dd>3 · und wachsend</dd>
-          </div>
-        </dl>
+        <div class="team__grid">
+
+          <article class="person">
+            <div class="person__frame">
+              <span class="person__corner">N · 01</span>
+              <span class="person__corner-r">2026</span>
+              <img class="person__silhouette" src="/images/Levin.png" alt="Porträt Levin Wolf" loading="lazy" decoding="async"/>
+            </div>
+            <h3 class="person__name">Levin <em>Wolf</em></h3>
+            <p class="person__role">Gestaltung · Frontend</p>
+            <p class="person__bio">
+              Setzt die Schrift, zeichnet das Raster, schreibt die
+              Stilbibel. Glaubt an Marginalien.
+            </p>
+          </article>
+
+          <article class="person">
+            <div class="person__frame">
+              <span class="person__corner">N · 02</span>
+              <span class="person__corner-r">2026</span>
+              <img class="person__silhouette" src="/images/Paul.png" alt="Porträt Paul Ernst Werler" loading="lazy" decoding="async"/>
+            </div>
+            <h3 class="person__name">Paul Ernst <em>Werler</em></h3>
+            <p class="person__role">Strategie · Inhalt</p>
+            <p class="person__bio">
+              Sortiert das Gespräch, schreibt den ersten Satz und den
+              letzten. Wartet, bis es stimmt.
+            </p>
+          </article>
+
+          <article class="person">
+            <div class="person__frame">
+              <span class="person__corner">N · 03</span>
+              <span class="person__corner-r">2026</span>
+              <img class="person__silhouette" src="/images/Isaac.png" alt="Porträt Isaac Lins" loading="lazy" decoding="async"/>
+            </div>
+            <h3 class="person__name">Isaac <em>Lins</em></h3>
+            <p class="person__role">Technik · Hosting</p>
+            <p class="person__bio">
+              Hält die Lichter an. Migriert ohne Drama, sichert vor
+              dem Schlafen, ruft zurück.
+            </p>
+          </article>
+
+        </div>
       </div>
-    </header>
+    </section>
 
   </main>
 

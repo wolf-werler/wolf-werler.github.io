@@ -1,0 +1,41 @@
+name = "wolf-werler-contact"
+main = "src/index.js"
+compatibility_date = "2025-01-15"
+compatibility_flags = ["nodejs_compat"]
+
+# Custom domain — api.wolf-werler.ch must exist on the wolf-werler.ch zone in Cloudflare.
+# Wrangler will create the DNS record on first deploy.
+routes = [
+  { pattern = "api.wolf-werler.ch", custom_domain = true }
+]
+
+# Cloudflare Email Routing send binding.
+# These are Cloudflare's allowlist of who the worker CAN send to (verified in the
+# wolf-werler.ch zone's Email Routing → Destination addresses). The actual
+# runtime recipients are controlled by the DESTINATIONS env var below.
+[[send_email]]
+name = "SEND_EMAIL"
+allowed_destination_addresses = [
+  "contact@isaaclins.com",
+  "Levin.wolf@icloud.com"
+]
+
+# KV namespace for per-IP rate limiting. Create with:
+#   wrangler kv namespace create RATE_LIMIT
+# then paste the returned id below in place of the placeholder.
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[vars]
+SENDER_ADDRESS = "kontakt@wolf-werler.ch"
+SENDER_NAME    = "Wolf · Werler Formular"
+# Comma-separated. Move to a secret with `wrangler secret put DESTINATIONS`
+# if you'd rather not advertise the addresses in source.
+DESTINATIONS   = "contact@isaaclins.com,Levin.wolf@icloud.com"
+
+# DISCORD_WEBHOOK_URL is set as a secret:
+#   wrangler secret put DISCORD_WEBHOOK_URL
+
+[observability]
+enabled = true
