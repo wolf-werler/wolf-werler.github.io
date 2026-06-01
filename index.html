@@ -1,238 +1,1636 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>wolf-werler · Vorschau</title>
-  <meta name="description" content="Fünf Designrichtungen für wolf-werler.ch — wählen Sie eine."/>
-  <link rel="icon" href="shared/favicon.svg" type="image/svg+xml"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hochnebel — Designprüfung · Wolf · Werler</title>
+  <meta name="description" content="Moodboard und Heimseite-Entwurf für Wolf · Werler. Palette: Hochnebel über dem Mittelland." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --ink: #111;
-      --paper: #f7f6f3;
-      --muted: #777;
-      --rule: #d8d6d0;
-      --mono: ui-monospace, "JetBrains Mono", "SF Mono", "Menlo", "Consolas", monospace;
+    /* ────────────────────────────────────────────────────────────
+       HOCHNEBEL — design system
+       Palette is locked to four values. Roles below.
+       fog   #D8E4EA  paper, body-on-dark
+       mist  #97B0BE  hairlines, ornament, dot-grids
+       slate #567C91  large display, mid icons, button hover
+       ink   #324C5B  body-on-light, primary fills, deep canvas
+       ──────────────────────────────────────────────────────────── */
+
+    :root{
+      --fog:   #D8E4EA;
+      --mist:  #97B0BE;
+      --slate: #567C91;
+      --ink:   #324C5B;
+
+      --fog-50:  color-mix(in oklab, var(--fog) 50%, transparent);
+      --mist-30: color-mix(in oklab, var(--mist) 30%, transparent);
+      --ink-08:  color-mix(in oklab, var(--ink) 8%, transparent);
+      --ink-16:  color-mix(in oklab, var(--ink) 16%, transparent);
+
+      --serif: "Instrument Serif", "Times New Roman", serif;
+      --sans:  "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono:  "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+      --page-max: 1240px;
+      --gutter: clamp(20px, 4vw, 56px);
+
+      --r-1: 2px;
+      --r-2: 4px;
     }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      background: var(--paper);
+
+    *,*::before,*::after{ box-sizing: border-box; }
+    html,body{ margin:0; padding:0; }
+    html{ scroll-behavior: smooth; }
+    body{
+      background: var(--fog);
       color: var(--ink);
-      font-family: var(--mono);
-      font-size: 13.5px;
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 17px;
       line-height: 1.55;
       -webkit-font-smoothing: antialiased;
-      letter-spacing: 0.005em;
-    }
-    .wrap { max-width: 1180px; padding: 48px 36px 96px; margin: 0 auto; }
-
-    header { display: flex; align-items: baseline; justify-content: space-between;
-      border-bottom: 1px solid var(--ink); padding-bottom: 18px; margin-bottom: 36px;
-      flex-wrap: wrap; gap: 12px; }
-    header .mark { font-weight: 700; letter-spacing: -0.01em; }
-    header .meta { color: var(--muted); }
-    header .meta b { color: var(--ink); font-weight: 600; }
-
-    .intro { max-width: 60ch; margin: 0 0 56px; }
-    .intro h1 { font-family: var(--mono); font-size: 22px; font-weight: 600;
-      letter-spacing: -0.01em; margin: 0 0 10px; }
-    .intro p { margin: 0; color: var(--muted); }
-    .intro p b { color: var(--ink); font-weight: 600; }
-
-    .sheet { display: grid; gap: 0; border-top: 1px solid var(--ink);
-      border-bottom: 1px solid var(--ink); }
-    .row { display: grid;
-      grid-template-columns: 56px 1.4fr 1fr 1.1fr 140px;
-      align-items: stretch;
-      border-bottom: 1px solid var(--rule);
-      transition: background 120ms ease;
-    }
-    .row:last-child { border-bottom: 0; }
-    .row.head { background: var(--ink); color: var(--paper); }
-    .row.head .cell { color: var(--paper); font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.08em; font-size: 11px; }
-    .row:not(.head):hover { background: rgba(0,0,0,0.025); }
-
-    .cell { padding: 22px 18px; display: flex; flex-direction: column; gap: 6px;
-      justify-content: center; min-width: 0; }
-    .cell.num { font-weight: 700; font-size: 16px; letter-spacing: -0.02em;
-      align-items: flex-start; }
-    .cell.name strong { font-weight: 600; font-size: 14.5px; letter-spacing: -0.005em;
-      color: var(--ink); }
-    .cell.name span { color: var(--muted); }
-    .cell.type span { color: var(--ink); font-weight: 600; }
-    .cell.type em { font-style: normal; color: var(--muted); display: block;
-      font-size: 12px; }
-
-    .swatches { display: flex; gap: 4px; }
-    .swatches i { display: inline-block; width: 22px; height: 22px;
-      border: 1px solid rgba(0,0,0,0.1); border-radius: 3px; }
-
-    .open {
-      align-self: center; display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 14px; background: var(--ink); color: var(--paper);
-      text-decoration: none; font-weight: 600; font-size: 12px;
-      letter-spacing: 0.04em; text-transform: uppercase;
-      transition: transform 120ms ease, background 120ms ease;
-      margin: 14px 18px;
-    }
-    .open:hover { transform: translateX(2px); background: #000; }
-    .open:focus-visible { outline: 2px solid #1E88E5; outline-offset: 3px; }
-
-    footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--rule);
-      display: grid; gap: 8px; color: var(--muted); }
-    footer code { background: rgba(0,0,0,0.05); padding: 1px 6px; border-radius: 3px;
-      font-family: var(--mono); }
-
-    @media (max-width: 880px) {
-      .row { grid-template-columns: 44px 1fr; }
-      .row.head { display: none; }
-      .cell { padding: 14px 16px; }
-      .cell.num { padding-top: 18px; }
-      .cell.type, .cell.palette, .open { grid-column: 2; padding-top: 0; padding-bottom: 0; }
-      .open { margin: 8px 16px 18px; align-self: flex-start; }
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .open, .row { transition: none; }
+    /* Subtle grain — the fog has texture. Single inline SVG, low opacity. */
+    body::before{
+      content:"";
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      mix-blend-mode: multiply;
+      opacity: .035;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
     }
+
+    a{ color: inherit; text-decoration: none; }
+    img,svg{ display:block; max-width:100%; }
+
+    /* ───── layout primitives ───── */
+    .wrap{
+      max-width: var(--page-max);
+      margin: 0 auto;
+      padding-inline: var(--gutter);
+    }
+    .rule{
+      height: 1px; background: var(--mist); border:0; opacity:.55;
+    }
+    .hair{
+      height: 1px; background: currentColor; opacity:.18; border:0;
+    }
+
+    /* ───── micro-labels (mono, kerned, the studio-marks) ───── */
+    .label{
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+    .label--ink{ color: var(--ink); }
+    .label--mist{ color: var(--mist); }
+    .label--fog{ color: var(--fog); }
+
+    /* ───── display headings ───── */
+    .display{
+      font-family: var(--serif);
+      font-weight: 400;
+      line-height: 0.98;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .display em{ font-style: italic; color: var(--slate); }
+
+    /* ───── page topbar (the sheet header) ───── */
+    .sheet-bar{
+      position: sticky; top: 0; z-index: 50;
+      background: color-mix(in oklab, var(--fog) 88%, transparent);
+      backdrop-filter: saturate(120%) blur(8px);
+      -webkit-backdrop-filter: saturate(120%) blur(8px);
+      border-bottom: 1px solid var(--mist-30);
+    }
+    .sheet-bar__inner{
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 16px;
+      padding-block: 14px;
+    }
+    .sheet-bar__mark{
+      font-family: var(--serif);
+      font-size: 20px;
+      line-height: 1;
+      letter-spacing: -.01em;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .sheet-bar__mark em{ font-style: italic; color: var(--slate); }
+    .sheet-bar__mark .dot{
+      display: inline-block; width: 5px; height: 5px;
+      border-radius: 999px; background: var(--slate);
+      vertical-align: middle; margin-inline: 9px;
+      transform: translateY(-2px);
+    }
+    .sheet-bar__nav{
+      display: flex; gap: 22px; justify-content: center;
+    }
+    .sheet-bar__nav a{
+      font-family: var(--mono); font-size: 11px;
+      text-transform: uppercase; letter-spacing: .14em;
+      color: var(--ink); opacity:.78;
+      transition: opacity .2s ease;
+    }
+    .sheet-bar__nav a:hover{ opacity: 1; }
+    .sheet-bar__meta{
+      justify-self: end;
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--slate);
+    }
+
+    /* ============================================================
+       PART I — MOODBOARD
+       ============================================================ */
+    .mood{
+      padding-block: clamp(60px, 9vw, 120px) clamp(60px, 9vw, 110px);
+    }
+
+    /* Hero of the moodboard */
+    .mood-hero{
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: clamp(28px, 5vw, 80px);
+      align-items: end;
+      padding-block: 24px clamp(40px, 6vw, 80px);
+    }
+    .mood-hero h1{
+      margin: 0;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(56px, 11vw, 168px);
+      line-height: .9;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+    }
+    .mood-hero h1 em{
+      font-style: italic;
+      color: var(--slate);
+    }
+    .mood-hero__aside{
+      align-self: end;
+    }
+    .mood-hero__aside p{
+      margin: 12px 0 0;
+      color: var(--ink);
+      max-width: 36ch;
+    }
+    .mood-hero__aside .label{ margin-bottom: 6px; display:block; }
+    .mood-hero__coords{
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 24px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--slate);
+      letter-spacing: .08em;
+    }
+    .mood-hero__coords span:nth-child(even){ color: var(--ink); }
+
+    @media (max-width: 760px){
+      .mood-hero{ grid-template-columns: 1fr; align-items: start; }
+    }
+
+    /* Section header used inside the moodboard */
+    .sec-h{
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+      gap: clamp(24px, 4vw, 60px);
+      padding-block: clamp(48px, 7vw, 88px) clamp(20px, 3vw, 36px);
+      align-items: baseline;
+    }
+    .sec-h__num{
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .18em;
+      color: var(--slate);
+      text-transform: uppercase;
+    }
+    .sec-h__title{
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(32px, 4.2vw, 56px);
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+      margin: 0;
+      color: var(--ink);
+    }
+    .sec-h__title em{ font-style: italic; color: var(--slate); }
+
+    /* ───── 01 — PALETTE ───── */
+    .palette{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--mist);
+      border: 1px solid var(--mist);
+      border-radius: var(--r-2);
+      overflow: hidden;
+    }
+    @media (max-width: 820px){ .palette{ grid-template-columns: repeat(2, 1fr); } }
+    .swatch{
+      aspect-ratio: 3 / 4;
+      padding: 22px 22px 20px;
+      position: relative;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .swatch .label{ font-size: 10px; }
+    .swatch__name{
+      font-family: var(--serif);
+      font-size: clamp(28px, 3vw, 40px);
+      line-height: 1;
+      letter-spacing: -.01em;
+      margin: 0;
+    }
+    .swatch__hex{
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .08em;
+    }
+    .swatch__role{
+      font-size: 13px;
+      max-width: 22ch;
+      line-height: 1.4;
+    }
+    .swatch__meta{
+      display: flex; justify-content: space-between; align-items: flex-end;
+      gap: 14px;
+    }
+    .swatch--fog  { background: var(--fog);   color: var(--ink); }
+    .swatch--mist { background: var(--mist);  color: var(--ink); }
+    .swatch--slate{ background: var(--slate); color: var(--fog); }
+    .swatch--ink  { background: var(--ink);   color: var(--fog); }
+    .swatch--slate .label, .swatch--ink .label{ color: var(--fog); opacity:.7; }
+
+    /* Contrast strip below palette */
+    .contrast{
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 820px){ .contrast{ grid-template-columns: repeat(2, 1fr); } }
+    .contrast__cell{
+      padding: 16px 16px 14px;
+      border: 1px solid var(--mist);
+      border-radius: var(--r-2);
+      background: var(--fog);
+    }
+    .contrast__cell .label{ display:block; margin-bottom: 6px; font-size:10px; }
+    .contrast__row{
+      display: flex; align-items: center; justify-content: space-between;
+      font-family: var(--mono); font-size: 12px; color: var(--ink);
+      letter-spacing: .04em;
+    }
+    .contrast__pair{
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--serif); font-size: 18px;
+      color: var(--ink);
+    }
+    .contrast__chip{
+      width: 14px; height: 14px; border-radius: 999px;
+      border: 1px solid var(--ink-16);
+    }
+    .contrast__verdict{
+      font-family: var(--mono); font-size: 10px;
+      letter-spacing: .14em; text-transform: uppercase;
+      padding: 3px 8px; border-radius: 999px;
+      background: var(--ink); color: var(--fog);
+    }
+    .contrast__verdict--soft{ background: transparent; color: var(--slate); border: 1px solid var(--mist); }
+    .contrast__verdict--no{ background: transparent; color: var(--mist); border: 1px solid var(--mist); }
+
+    /* ───── 02 — TYPOGRAPHY ───── */
+    .type{
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(24px, 4vw, 56px);
+    }
+    @media (max-width: 820px){ .type{ grid-template-columns: 1fr; } }
+    .specimen{
+      border-top: 1px solid var(--mist);
+      padding-top: 22px;
+    }
+    .specimen .label{ display:block; margin-bottom: 10px; }
+    .specimen__big{
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(64px, 7vw, 120px);
+      line-height: .95;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      margin: 0 0 4px;
+    }
+    .specimen__big em{ font-style: italic; color: var(--slate); }
+    .specimen__meta{
+      display: flex; justify-content: space-between;
+      font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+      color: var(--slate);
+      padding-top: 16px;
+      border-top: 1px dashed var(--mist);
+    }
+    .specimen__sample{
+      font-size: 17px; line-height: 1.55; color: var(--ink);
+      margin: 0;
+    }
+    .specimen__sample b{ font-weight: 600; }
+    .specimen__waterfall > *{ display: block; margin-block: 4px; }
+    .specimen__waterfall .w1{ font-family: var(--sans); font-weight: 300; font-size: 32px; letter-spacing: -.01em; }
+    .specimen__waterfall .w2{ font-family: var(--sans); font-weight: 400; font-size: 24px; letter-spacing: -.005em; }
+    .specimen__waterfall .w3{ font-family: var(--sans); font-weight: 500; font-size: 18px; }
+    .specimen__waterfall .w4{ font-family: var(--sans); font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: .12em; }
+    .specimen__waterfall .w5{ font-family: var(--mono); font-size: 12px; letter-spacing: .08em; }
+
+    /* ───── 03 — VOICE / MOOD KEYWORDS ───── */
+    .voice{
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: clamp(28px, 4vw, 64px);
+      align-items: start;
+    }
+    @media (max-width: 820px){ .voice{ grid-template-columns: 1fr; } }
+    .voice__quote{
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(28px, 3.4vw, 44px);
+      line-height: 1.12;
+      letter-spacing: -.012em;
+      color: var(--ink);
+      margin: 0;
+    }
+    .voice__quote em{ font-style: italic; color: var(--slate); }
+    .voice__quote::before{
+      content: "›";
+      font-family: var(--serif);
+      font-size: 1.2em;
+      color: var(--slate);
+      margin-right: .12em;
+    }
+    .voice__attribution{
+      margin-top: 24px;
+    }
+    .keywords{
+      display: flex; flex-wrap: wrap; gap: 8px 10px;
+    }
+    .kw{
+      font-family: var(--mono);
+      font-size: 11px; letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      padding: 8px 14px;
+      border: 1px solid var(--mist);
+      border-radius: 999px;
+      background: transparent;
+    }
+    .kw--ink{ background: var(--ink); color: var(--fog); border-color: var(--ink); }
+    .kw--slate{ background: var(--slate); color: var(--fog); border-color: var(--slate); }
+
+    /* ───── 04 — PATTERN STRIP ───── */
+    .patterns{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 820px){ .patterns{ grid-template-columns: repeat(2, 1fr); } }
+    .pat{
+      aspect-ratio: 1 / 1;
+      border-radius: var(--r-2);
+      border: 1px solid var(--mist);
+      position: relative;
+      overflow: hidden;
+      background: var(--fog);
+    }
+    .pat .pat__label{
+      position: absolute; left: 12px; bottom: 12px;
+      font-family: var(--mono); font-size: 10px;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--ink);
+      background: color-mix(in oklab, var(--fog) 85%, transparent);
+      padding: 4px 8px; border-radius: 2px;
+    }
+    .pat--dots{
+      background-image: radial-gradient(var(--mist) 1.4px, transparent 1.6px);
+      background-size: 14px 14px;
+      background-position: 0 0;
+    }
+    .pat--rules{
+      background-image: repeating-linear-gradient(0deg, transparent 0 14px, var(--mist-30) 14px 15px);
+    }
+    .pat--fog{
+      background:
+        radial-gradient(120% 80% at 20% 0%, color-mix(in oklab, var(--mist) 55%, transparent) 0%, transparent 60%),
+        radial-gradient(120% 90% at 90% 100%, color-mix(in oklab, var(--slate) 35%, transparent) 0%, transparent 60%),
+        linear-gradient(180deg, var(--fog) 0%, color-mix(in oklab, var(--mist) 40%, var(--fog)) 100%);
+    }
+    .pat--ink{
+      background: var(--ink);
+    }
+    .pat--ink::after{
+      content:"";
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(60% 40% at 50% 100%, color-mix(in oklab, var(--slate) 60%, transparent) 0%, transparent 70%);
+    }
+    .pat--ink .pat__label{ color: var(--fog); background: color-mix(in oklab, var(--ink) 85%, transparent); }
+
+    /* ───── 05 — COMPONENTS ───── */
+    .components{
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(24px, 4vw, 56px);
+    }
+    @media (max-width: 820px){ .components{ grid-template-columns: 1fr; } }
+    .comp{
+      border: 1px solid var(--mist);
+      border-radius: var(--r-2);
+      padding: 28px;
+      background: var(--fog);
+    }
+    .comp__title{
+      display: block; margin-bottom: 18px;
+    }
+
+    /* Buttons */
+    .btn{
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--sans); font-weight: 500;
+      font-size: 14px; letter-spacing: .005em;
+      padding: 13px 22px;
+      border-radius: 999px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--fog);
+      cursor: pointer;
+      transition: background .25s ease, color .25s ease, border-color .25s ease, transform .25s ease;
+    }
+    .btn:hover{ background: var(--slate); border-color: var(--slate); }
+    .btn--ghost{ background: transparent; color: var(--ink); border-color: var(--ink); }
+    .btn--ghost:hover{ background: var(--ink); color: var(--fog); }
+    .btn--light{ background: var(--fog); color: var(--ink); border-color: var(--fog); }
+    .btn__arrow{ width: 14px; height: 14px; }
+
+    .btn-row{ display: flex; flex-wrap: wrap; gap: 10px; }
+
+    /* Form field */
+    .field{
+      display: grid; gap: 6px;
+      margin-bottom: 14px;
+    }
+    .field label{
+      font-family: var(--mono); font-size: 10px;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--slate);
+    }
+    .field input, .field textarea, .field select{
+      width: 100%;
+      font: 400 16px/1.4 var(--sans);
+      color: var(--ink);
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid var(--mist);
+      padding: 10px 0;
+      outline: none;
+      transition: border-color .2s ease;
+    }
+    .field input:focus, .field textarea:focus{
+      border-color: var(--ink);
+    }
+    .field textarea{ resize: vertical; min-height: 80px; }
+    .field input::placeholder, .field textarea::placeholder{
+      color: color-mix(in oklab, var(--slate) 80%, transparent);
+    }
+
+    /* Card */
+    .card{
+      border: 1px solid var(--mist);
+      border-radius: var(--r-2);
+      padding: 22px;
+      background: var(--fog);
+    }
+    .card__top{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .card__index{
+      font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+      color: var(--slate);
+    }
+    .card__dot{
+      width: 8px; height: 8px; border-radius: 999px; background: var(--slate);
+    }
+    .card__title{
+      font-family: var(--serif); font-size: 28px; line-height: 1.05; letter-spacing: -.01em;
+      margin: 0 0 8px;
+    }
+    .card__title em{ font-style: italic; color: var(--slate); }
+    .card__copy{
+      font-size: 14.5px; color: color-mix(in oklab, var(--ink) 85%, transparent);
+      margin: 0 0 18px;
+    }
+    .card__more{
+      font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--ink);
+      display: inline-flex; align-items: center; gap: 6px;
+      border-bottom: 1px solid var(--ink); padding-bottom: 1px;
+    }
+
+    /* ============================================================
+       PART II — HOMEPAGE MOCKUP
+       ============================================================ */
+    .site-divider{
+      margin-top: clamp(60px, 8vw, 100px);
+      padding-block: 18px;
+      background: var(--ink);
+      color: var(--fog);
+      border-top: 1px solid var(--mist-30);
+      border-bottom: 1px solid color-mix(in oklab, var(--fog) 18%, transparent);
+    }
+    .site-divider .wrap{
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 18px;
+    }
+    .site-divider .label--fog{ opacity:.85; }
+
+    .site{
+      background: var(--fog);
+      color: var(--ink);
+    }
+
+    /* Nav for the mockup */
+    .nav{
+      padding-block: 22px;
+      border-bottom: 1px solid var(--mist-30);
+    }
+    .nav__inner{
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav__mark{
+      font-family: var(--serif); font-size: 22px; line-height: 1; letter-spacing: -.01em;
+      color: var(--ink);
+    }
+    .nav__mark em{ font-style: italic; color: var(--slate); }
+    .nav__mark .dot{
+      display: inline-block; width: 5px; height: 5px;
+      border-radius: 999px; background: var(--slate);
+      vertical-align: middle; margin-inline: 9px;
+      transform: translateY(-2px);
+    }
+    .nav__links{
+      display: flex; gap: 28px; justify-content: center;
+    }
+    .nav__links a{
+      font-family: var(--mono); font-size: 11px;
+      text-transform: uppercase; letter-spacing: .14em;
+      color: var(--ink); opacity: .82;
+      position: relative;
+    }
+    .nav__links a:hover{ opacity: 1; }
+    .nav__links a.active::after{
+      content: ""; position: absolute; left: 0; right: 0; bottom: -6px;
+      height: 1px; background: var(--ink);
+    }
+    .nav__cta{ justify-self: end; }
+    .nav__cta .btn{ padding: 10px 18px; font-size: 13px; }
+
+    @media (max-width: 760px){
+      .nav__links{ display: none; }
+      .nav__inner{ grid-template-columns: 1fr auto; }
+    }
+
+    /* Hero of the mockup */
+    .hero{
+      padding-block: clamp(70px, 10vw, 140px) clamp(60px, 8vw, 110px);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before{
+      content:"";
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(80% 60% at 80% 0%, color-mix(in oklab, var(--mist) 50%, transparent) 0%, transparent 60%),
+        radial-gradient(60% 50% at 0% 100%, color-mix(in oklab, var(--slate) 18%, transparent) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero__inner{ position: relative; }
+    .hero__eyebrow{
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 28px;
+    }
+    .hero__eyebrow .hair-line{
+      flex: 0 0 64px; height: 1px; background: var(--ink); opacity: .35;
+    }
+    .hero h1{
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(54px, 9vw, 132px);
+      line-height: .94;
+      letter-spacing: -.022em;
+      margin: 0;
+      max-width: 14ch;
+    }
+    .hero h1 em{ font-style: italic; color: var(--slate); }
+    .hero__lede{
+      margin-top: 32px;
+      font-size: clamp(18px, 1.6vw, 22px);
+      line-height: 1.5;
+      color: color-mix(in oklab, var(--ink) 88%, transparent);
+      max-width: 50ch;
+    }
+    .hero__cta{
+      margin-top: 36px;
+      display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+    }
+    .hero__meta{
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding-top: 22px;
+      border-top: 1px solid var(--mist);
+    }
+    @media (max-width: 720px){ .hero__meta{ grid-template-columns: 1fr; gap: 14px; } }
+    .hero__meta dt{
+      font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--slate);
+    }
+    .hero__meta dd{
+      margin: 4px 0 0;
+      font-family: var(--serif);
+      font-size: 22px; line-height: 1.15;
+      color: var(--ink);
+    }
+
+    /* Leistungen */
+    .services{
+      padding-block: clamp(60px, 8vw, 110px);
+      border-top: 1px solid var(--mist);
+    }
+    .services__head{
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+      gap: clamp(24px, 4vw, 60px);
+      align-items: end;
+      margin-bottom: clamp(36px, 5vw, 72px);
+    }
+    @media (max-width: 820px){ .services__head{ grid-template-columns: 1fr; align-items: start; } }
+    .services__head h2{
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(40px, 5.4vw, 76px); line-height: 1; letter-spacing: -.018em;
+      margin: 0;
+    }
+    .services__head h2 em{ font-style: italic; color: var(--slate); }
+    .services__intro{
+      font-size: 16.5px; max-width: 52ch; margin: 0;
+      color: color-mix(in oklab, var(--ink) 88%, transparent);
+    }
+    .services__grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--mist);
+      border: 1px solid var(--mist);
+      border-radius: var(--r-2);
+      overflow: hidden;
+    }
+    @media (max-width: 820px){ .services__grid{ grid-template-columns: 1fr; } }
+    .service{
+      background: var(--fog);
+      padding: 36px 32px;
+      display: flex; flex-direction: column; gap: 16px;
+      min-height: 280px;
+    }
+    .service__num{
+      font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+      color: var(--slate);
+    }
+    .service__icon{
+      margin-block: 6px 4px;
+      color: var(--slate);
+    }
+    .service h3{
+      font-family: var(--serif); font-weight: 400;
+      font-size: 30px; line-height: 1.05; letter-spacing: -.012em;
+      margin: 0;
+    }
+    .service h3 em{ font-style: italic; color: var(--slate); }
+    .service p{ margin: 0; font-size: 15px; line-height: 1.55; color: color-mix(in oklab, var(--ink) 88%, transparent); }
+    .service__list{
+      list-style: none; padding: 0; margin: auto 0 0;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .service__list li{
+      font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--ink);
+      display: flex; gap: 8px;
+    }
+    .service__list li::before{
+      content: ""; width: 4px; height: 4px; border-radius: 999px;
+      background: var(--slate); margin-top: 7px; flex: none;
+    }
+
+    /* Team */
+    .team{
+      padding-block: clamp(60px, 8vw, 110px);
+      background: var(--ink);
+      color: var(--fog);
+      border-top: 1px solid color-mix(in oklab, var(--fog) 12%, transparent);
+    }
+    .team .label{ color: color-mix(in oklab, var(--fog) 72%, transparent); }
+    .team h2{
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(40px, 5.4vw, 76px); line-height: 1; letter-spacing: -.018em;
+      margin: 18px 0 0;
+      color: var(--fog);
+    }
+    .team h2 em{ font-style: italic; color: var(--mist); }
+    .team__grid{
+      margin-top: clamp(36px, 5vw, 72px);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(20px, 3vw, 36px);
+    }
+    @media (max-width: 820px){ .team__grid{ grid-template-columns: 1fr; } }
+    .person{
+      display: flex; flex-direction: column;
+    }
+    .person__frame{
+      aspect-ratio: 4 / 5;
+      background:
+        linear-gradient(180deg, color-mix(in oklab, var(--slate) 70%, var(--ink)) 0%, var(--ink) 100%);
+      border: 1px solid color-mix(in oklab, var(--fog) 12%, transparent);
+      border-radius: var(--r-2);
+      position: relative;
+      overflow: hidden;
+    }
+    .person__silhouette{
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .person__corner{
+      position: absolute; top: 14px; left: 14px;
+      font-family: var(--mono); font-size: 10px;
+      letter-spacing: .14em; color: var(--mist);
+    }
+    .person__corner-r{
+      position: absolute; top: 14px; right: 14px;
+      font-family: var(--mono); font-size: 10px;
+      letter-spacing: .14em; color: var(--mist);
+    }
+    .person__name{
+      font-family: var(--serif);
+      font-size: 30px; line-height: 1.05; letter-spacing: -.012em;
+      margin: 22px 0 4px;
+      color: var(--fog);
+    }
+    .person__name em{ font-style: italic; color: var(--mist); }
+    .person__role{
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--mist);
+      margin-bottom: 12px;
+    }
+    .person__bio{
+      font-size: 14.5px; line-height: 1.55;
+      color: color-mix(in oklab, var(--fog) 82%, transparent);
+      margin: 0;
+    }
+
+    /* References (case strip) */
+    .refs{
+      padding-block: clamp(60px, 8vw, 110px);
+    }
+    .refs h2{
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(40px, 5.4vw, 76px); line-height: 1; letter-spacing: -.018em;
+      margin: 18px 0 36px;
+    }
+    .refs h2 em{ font-style: italic; color: var(--slate); }
+    .refs__list{
+      border-top: 1px solid var(--mist);
+    }
+    .refs__row{
+      display: grid;
+      grid-template-columns: 70px minmax(0, 1.4fr) minmax(0, 1.2fr) auto;
+      align-items: center;
+      gap: clamp(14px, 2vw, 28px);
+      padding-block: 22px;
+      border-bottom: 1px solid var(--mist);
+      transition: padding .25s ease;
+    }
+    .refs__row:hover{ padding-inline: 8px; }
+    .refs__row .num{
+      font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+      color: var(--slate);
+    }
+    .refs__row .name{
+      font-family: var(--serif); font-size: 26px; line-height: 1.1; letter-spacing: -.01em;
+    }
+    .refs__row .name em{ font-style: italic; color: var(--slate); }
+    .refs__row .kind{
+      font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+      text-transform: uppercase; color: color-mix(in oklab, var(--ink) 78%, transparent);
+    }
+    .refs__row .year{
+      font-family: var(--mono); font-size: 12px;
+      color: var(--slate);
+    }
+    @media (max-width: 760px){
+      .refs__row{ grid-template-columns: 36px 1fr auto; }
+      .refs__row .kind{ grid-column: 2 / 4; font-size: 10px; }
+      .refs__row .year{ grid-column: 3 / 4; grid-row: 1; justify-self: end; }
+    }
+
+    /* Contact / CTA */
+    .contact{
+      padding-block: clamp(60px, 8vw, 110px);
+      background: var(--ink);
+      color: var(--fog);
+      border-top: 1px solid color-mix(in oklab, var(--fog) 12%, transparent);
+      position: relative; overflow: hidden;
+    }
+    .contact::before{
+      content: "";
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(70% 50% at 100% 0%, color-mix(in oklab, var(--slate) 45%, transparent) 0%, transparent 60%);
+    }
+    .contact__grid{
+      display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: clamp(28px, 5vw, 80px);
+      position: relative;
+    }
+    @media (max-width: 820px){ .contact__grid{ grid-template-columns: 1fr; } }
+    .contact .label{ color: color-mix(in oklab, var(--fog) 72%, transparent); }
+    .contact h2{
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(40px, 5.6vw, 80px); line-height: .98; letter-spacing: -.02em;
+      margin: 18px 0 0; color: var(--fog);
+    }
+    .contact h2 em{ font-style: italic; color: var(--mist); }
+    .contact__lede{
+      margin-top: 22px;
+      color: color-mix(in oklab, var(--fog) 82%, transparent);
+      font-size: 16.5px; max-width: 44ch;
+    }
+    .contact__details{
+      margin-top: 30px;
+      display: grid; gap: 14px;
+    }
+    .contact__details dt{
+      font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--mist);
+    }
+    .contact__details dd{
+      margin: 2px 0 0;
+      font-family: var(--serif); font-size: 22px;
+      color: var(--fog);
+    }
+    .contact__form{
+      background: color-mix(in oklab, var(--fog) 6%, transparent);
+      border: 1px solid color-mix(in oklab, var(--fog) 14%, transparent);
+      border-radius: var(--r-2);
+      padding: 28px;
+    }
+    .contact__form .field label{ color: var(--mist); }
+    .contact__form .field input,
+    .contact__form .field textarea{
+      color: var(--fog);
+      border-bottom-color: color-mix(in oklab, var(--fog) 22%, transparent);
+    }
+    .contact__form .field input::placeholder,
+    .contact__form .field textarea::placeholder{
+      color: color-mix(in oklab, var(--fog) 45%, transparent);
+    }
+    .contact__form .field input:focus,
+    .contact__form .field textarea:focus{
+      border-bottom-color: var(--fog);
+    }
+    .contact__form .btn--light{
+      background: var(--fog); color: var(--ink); border-color: var(--fog);
+    }
+    .contact__form .btn--light:hover{
+      background: var(--mist); border-color: var(--mist); color: var(--ink);
+    }
+
+    /* Footer */
+    .foot{
+      padding-block: 36px 32px;
+      background: var(--ink);
+      color: color-mix(in oklab, var(--fog) 72%, transparent);
+      border-top: 1px solid color-mix(in oklab, var(--fog) 10%, transparent);
+    }
+    .foot__inner{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+    @media (max-width: 820px){ .foot__inner{ grid-template-columns: 1fr 1fr; } }
+    .foot__mark{
+      font-family: var(--serif); font-size: 20px;
+      color: var(--fog);
+    }
+    .foot__mark em{ font-style: italic; color: var(--mist); }
+    .foot__col h4{
+      font-family: var(--mono); font-size: 10px;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--mist); margin: 6px 0 14px;
+    }
+    .foot__col ul{ list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+    .foot__col a{ color: color-mix(in oklab, var(--fog) 82%, transparent); font-size: 14px; }
+    .foot__col a:hover{ color: var(--fog); }
+    .foot__legal{
+      margin-top: 36px; padding-top: 22px;
+      border-top: 1px solid color-mix(in oklab, var(--fog) 12%, transparent);
+      display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap;
+      font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+      color: color-mix(in oklab, var(--fog) 60%, transparent);
+    }
+
+    /* tiny details */
+    ::selection{ background: var(--ink); color: var(--fog); }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="mark">wolf-werler · vorschau-blatt</div>
-      <div class="meta">5 richtungen · <b>1 wahl</b> · phase 01</div>
+
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <!-- SHEET BAR (moodboard header)                                -->
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <header class="sheet-bar">
+    <div class="wrap sheet-bar__inner">
+      <div class="sheet-bar__mark">
+        Wolf<span class="dot"></span><em>Werler</em>
+      </div>
+      <nav class="sheet-bar__nav" aria-label="Sheet">
+        <a href="#moodboard">Moodboard</a>
+        <a href="#site">Heimseite</a>
+      </nav>
+      <div class="sheet-bar__meta">Hochnebel — V1 · 01.06.26</div>
+    </div>
+  </header>
+
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <!-- PART I  —  MOODBOARD                                        -->
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <main id="moodboard" class="mood">
+    <div class="wrap">
+
+      <!-- HERO of the moodboard -->
+      <section class="mood-hero">
+        <div>
+          <span class="label">Designprüfung · Sechste Studie</span>
+          <h1>Hoch&shy;<em>nebel</em>.</h1>
+        </div>
+        <aside class="mood-hero__aside">
+          <span class="label label--ink">Die Stimmung</span>
+          <p>Der ruhige, persistente Tiefnebel über dem Schweizer Mittelland.
+            Geschiefert, leise, konzentriert. Eine Marke, die mehr verspricht
+            als sie sagt — und mehr einlöst als sie verspricht.</p>
+          <div class="mood-hero__coords">
+            <span>System</span><span>4 Werte · Kalt-Grau</span>
+            <span>Typografie</span><span>Serif · Sans · Mono</span>
+            <span>Stimme</span><span>Sie · Trocken · Klar</span>
+            <span>Tempo</span><span>Editorial · Atmend</span>
+          </div>
+        </aside>
+      </section>
+
+      <!-- 01 — PALETTE -->
+      <section>
+        <header class="sec-h">
+          <div class="sec-h__num">01 · Palette</div>
+          <h2 class="sec-h__title">Vier Werte, ein <em>Nebel</em>.</h2>
+        </header>
+
+        <div class="palette" role="list" aria-label="Farbpalette">
+          <article class="swatch swatch--fog" role="listitem">
+            <div>
+              <span class="label">01 · Hintergrund</span>
+              <h3 class="swatch__name" style="margin-top:8px">Nebel</h3>
+            </div>
+            <div class="swatch__meta">
+              <p class="swatch__role">Papier, Seitenfläche, Lichtraum. Trägt allen Text.</p>
+              <span class="swatch__hex">#D8E4EA</span>
+            </div>
+          </article>
+
+          <article class="swatch swatch--mist" role="listitem">
+            <div>
+              <span class="label">02 · Ornament</span>
+              <h3 class="swatch__name" style="margin-top:8px">Dunst</h3>
+            </div>
+            <div class="swatch__meta">
+              <p class="swatch__role">Haarlinien, Rasterpunkte, Trennzeichen. Nie Text.</p>
+              <span class="swatch__hex">#97B0BE</span>
+            </div>
+          </article>
+
+          <article class="swatch swatch--slate" role="listitem">
+            <div>
+              <span class="label">03 · Akzent</span>
+              <h3 class="swatch__name" style="margin-top:8px">Schiefer</h3>
+            </div>
+            <div class="swatch__meta">
+              <p class="swatch__role">Kursive, Ikonen, mittlere Flächen. Spannung im Bild.</p>
+              <span class="swatch__hex">#567C91</span>
+            </div>
+          </article>
+
+          <article class="swatch swatch--ink" role="listitem">
+            <div>
+              <span class="label">04 · Tinte</span>
+              <h3 class="swatch__name" style="margin-top:8px">Tinte</h3>
+            </div>
+            <div class="swatch__meta">
+              <p class="swatch__role">Fliesstext, Knöpfe, tiefe Sektionen. Das Gewicht.</p>
+              <span class="swatch__hex">#324C5B</span>
+            </div>
+          </article>
+        </div>
+
+        <!-- contrast cells -->
+        <div class="contrast" aria-label="Kontrast (WCAG)">
+          <div class="contrast__cell">
+            <span class="label">Tinte · auf Nebel</span>
+            <div class="contrast__row">
+              <span class="contrast__pair">
+                <span class="contrast__chip" style="background:#324C5B"></span>
+                <span class="contrast__chip" style="background:#D8E4EA"></span>
+                Aa
+              </span>
+              <span class="contrast__verdict">6.98 · AA</span>
+            </div>
+          </div>
+          <div class="contrast__cell">
+            <span class="label">Nebel · auf Tinte</span>
+            <div class="contrast__row">
+              <span class="contrast__pair">
+                <span class="contrast__chip" style="background:#D8E4EA"></span>
+                <span class="contrast__chip" style="background:#324C5B"></span>
+                Aa
+              </span>
+              <span class="contrast__verdict">6.98 · AA</span>
+            </div>
+          </div>
+          <div class="contrast__cell">
+            <span class="label">Schiefer · auf Nebel</span>
+            <div class="contrast__row">
+              <span class="contrast__pair">
+                <span class="contrast__chip" style="background:#567C91"></span>
+                <span class="contrast__chip" style="background:#D8E4EA"></span>
+                Aa
+              </span>
+              <span class="contrast__verdict contrast__verdict--soft">3.46 · gross</span>
+            </div>
+          </div>
+          <div class="contrast__cell">
+            <span class="label">Dunst · auf Nebel</span>
+            <div class="contrast__row">
+              <span class="contrast__pair">
+                <span class="contrast__chip" style="background:#97B0BE"></span>
+                <span class="contrast__chip" style="background:#D8E4EA"></span>
+                Aa
+              </span>
+              <span class="contrast__verdict contrast__verdict--no">nur Ornament</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 — TYPOGRAPHY -->
+      <section>
+        <header class="sec-h">
+          <div class="sec-h__num">02 · Typografie</div>
+          <h2 class="sec-h__title">Eine Serife, eine Grotesk, eine <em>Markierung</em>.</h2>
+        </header>
+
+        <div class="type">
+          <div class="specimen">
+            <span class="label">Display · Instrument Serif</span>
+            <p class="specimen__big">Aa <em>Bb</em></p>
+            <p class="specimen__sample" style="margin-top:18px">
+              Die Schrift trägt das Versprechen. Hohe Strichkontraste,
+              spannende Kursive, schmale Versalien — ein Werkzeug für
+              <b>Schlagzeilen, die ihre Stimme nicht heben müssen.</b>
+            </p>
+            <div class="specimen__meta">
+              <span>Regular · Italic</span>
+              <span>−0.022 em · 0.94 lh</span>
+            </div>
+          </div>
+
+          <div class="specimen">
+            <span class="label">Text · Manrope</span>
+            <div class="specimen__waterfall" aria-hidden="true">
+              <span class="w1">Verwaltung mit Substanz.</span>
+              <span class="w2">Webseiten, die nach drei Jahren noch funktionieren.</span>
+              <span class="w3">Wir betreuen, wenn es leise wird.</span>
+              <span class="w4">Leistungen · Referenzen · Kontakt</span>
+              <span class="w5">CHF · WIRTSCHAFT · 2026</span>
+            </div>
+            <div class="specimen__meta">
+              <span>300 · 400 · 500 · 600 · 700</span>
+              <span>Geometric · Soft</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 — VOICE & MOOD -->
+      <section>
+        <header class="sec-h">
+          <div class="sec-h__num">03 · Stimme &amp; Stimmung</div>
+          <h2 class="sec-h__title">Sie. Trocken. <em>Verbindlich.</em></h2>
+        </header>
+
+        <div class="voice">
+          <div>
+            <p class="voice__quote">
+              Wir bauen keine grossen Auftritte. Wir bauen Auftritte,
+              die <em>klein bleiben können</em>, weil sie still
+              ihre Arbeit tun.
+            </p>
+            <div class="voice__attribution">
+              <span class="label">Tonalität · Heimseite-Lede</span>
+            </div>
+          </div>
+
+          <div>
+            <span class="label" style="display:block;margin-bottom:16px">Stimmungs-Wörter</span>
+            <div class="keywords">
+              <span class="kw kw--ink">Hochnebel</span>
+              <span class="kw">Schiefer</span>
+              <span class="kw">Editorial</span>
+              <span class="kw kw--slate">Verbindlich</span>
+              <span class="kw">Atmend</span>
+              <span class="kw">Atelier</span>
+              <span class="kw kw--ink">Schweizer Stille</span>
+              <span class="kw">Werkstatt</span>
+              <span class="kw">Geheftet</span>
+              <span class="kw">Trocken</span>
+              <span class="kw">Kompetent</span>
+              <span class="kw">Langsam genug</span>
+            </div>
+
+            <span class="label" style="display:block;margin: 36px 0 14px">Anti-Wörter</span>
+            <div class="keywords">
+              <span class="kw">— laut</span>
+              <span class="kw">— trendy</span>
+              <span class="kw">— bunt</span>
+              <span class="kw">— „innovativ“</span>
+              <span class="kw">— animiert</span>
+              <span class="kw">— scrolly-tell</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 — PATTERN STRIP -->
+      <section>
+        <header class="sec-h">
+          <div class="sec-h__num">04 · Atmosphäre</div>
+          <h2 class="sec-h__title">Raster, Hauche, <em>Linien</em>.</h2>
+        </header>
+
+        <div class="patterns">
+          <div class="pat pat--dots"><span class="pat__label">Rasterpunkt · 14 px</span></div>
+          <div class="pat pat--rules"><span class="pat__label">Liniatur · 14 px</span></div>
+          <div class="pat pat--fog"><span class="pat__label">Hochnebel · Verlauf</span></div>
+          <div class="pat pat--ink"><span class="pat__label">Tinte · Tiefe</span></div>
+        </div>
+      </section>
+
+      <!-- 05 — COMPONENTS -->
+      <section>
+        <header class="sec-h">
+          <div class="sec-h__num">05 · Bausteine</div>
+          <h2 class="sec-h__title">Knöpfe, Karten, <em>Felder</em>.</h2>
+        </header>
+
+        <div class="components">
+          <!-- buttons + card column -->
+          <div class="comp">
+            <span class="label comp__title">Aktionen</span>
+
+            <div class="btn-row" style="margin-bottom: 22px">
+              <button class="btn" type="button">
+                Anfrage senden
+                <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+              <button class="btn btn--ghost" type="button">Leistungen</button>
+            </div>
+
+            <hr class="hair" style="margin-block: 20px"/>
+
+            <span class="label comp__title">Karte · Referenz</span>
+            <div class="card">
+              <div class="card__top">
+                <span class="card__index">REF · 03 / 12</span>
+                <span class="card__dot"></span>
+              </div>
+              <h4 class="card__title">Atelier <em>Brunner</em>, Bern.</h4>
+              <p class="card__copy">
+                Vier Seiten, eine ruhige Buchungsstrecke, monatliche
+                Pflege. Seit 2023 ohne ein einziges Ticket.
+              </p>
+              <a href="#" class="card__more">
+                Fall lesen
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- form column -->
+          <div class="comp">
+            <span class="label comp__title">Formular · Feld</span>
+            <div class="field">
+              <label for="moodboard-name">Name</label>
+              <input id="moodboard-name" type="text" placeholder="Vorname Nachname" />
+            </div>
+            <div class="field">
+              <label for="moodboard-mail">E-Mail</label>
+              <input id="moodboard-mail" type="email" placeholder="sie@firma.ch" />
+            </div>
+            <div class="field">
+              <label for="moodboard-msg">Anliegen</label>
+              <textarea id="moodboard-msg" placeholder="Worum geht es?"></textarea>
+            </div>
+            <div class="btn-row" style="margin-top: 10px">
+              <button class="btn" type="button">Absenden</button>
+              <span class="label" style="align-self:center">Antwort innert 24 h</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <!-- DIVIDER between moodboard and homepage mockup               -->
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <div id="site" class="site-divider">
+    <div class="wrap">
+      <span class="label label--fog">II · Heimseite — Entwurf</span>
+      <span class="label label--fog">↓ Hochnebel, angewendet</span>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <!-- PART II  —  HOMEPAGE MOCKUP                                 -->
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <section class="site" aria-label="Heimseite-Entwurf">
+
+    <!-- NAV -->
+    <nav class="nav">
+      <div class="wrap nav__inner">
+        <div class="nav__mark">
+          Wolf<span class="dot"></span><em>Werler</em>
+        </div>
+        <div class="nav__links">
+          <a href="#" class="active">Start</a>
+          <a href="#">Leistungen</a>
+          <a href="#">Referenzen</a>
+          <a href="#">Über uns</a>
+          <a href="#">Kontakt</a>
+        </div>
+        <div class="nav__cta">
+          <a href="#site-contact" class="btn">Anfragen</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="wrap hero__inner">
+        <div class="hero__eyebrow">
+          <span class="hair-line" aria-hidden="true"></span>
+          <span class="label label--ink">Atelier für Webgestaltung &amp; Verwaltung</span>
+        </div>
+        <h1>Webseiten, die <em>still</em> ihre Arbeit tun.</h1>
+        <p class="hero__lede">
+          Wir gestalten, hosten und pflegen Auftritte für Schweizer
+          KMU. Klein, langlebig, präzise — und so wartungsarm, dass
+          Sie uns vergessen können.
+        </p>
+        <div class="hero__cta">
+          <a href="#site-contact" class="btn">
+            Projekt besprechen
+            <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#" class="btn btn--ghost">Unsere Arbeit ansehen</a>
+        </div>
+
+        <dl class="hero__meta">
+          <div>
+            <dt>Sitz</dt>
+            <dd>Bern · Schweiz</dd>
+          </div>
+          <div>
+            <dt>Im Atelier</dt>
+            <dd>Seit <em style="font-style:italic;color:var(--slate)">2021</em></dd>
+          </div>
+          <div>
+            <dt>Auftritte in Pflege</dt>
+            <dd>32 · und wachsend</dd>
+          </div>
+        </dl>
+      </div>
     </header>
 
-    <section class="intro">
-      <h1>Fünf Designrichtungen. Gleicher Inhalt. Eine Wahl.</h1>
-      <p>
-        Jede Richtung zeigt <b>Home, Leistungen und Kontakt</b> mit denselben Platzhaltertexten.
-        Klicken Sie sich durch, vergleichen Sie Typografie, Farbe und Rhythmus,
-        und wählen Sie eine. Die anderen vier werden danach gelöscht.
-      </p>
+    <!-- LEISTUNGEN -->
+    <section class="services">
+      <div class="wrap">
+        <div class="services__head">
+          <h2>Drei Dinge,<br/><em>vollständig</em>.</h2>
+          <p class="services__intro">
+            Wir teilen unsere Arbeit nicht in zwölf Pakete auf. Was wir
+            anbieten, decken wir bis zum letzten Tag des Auftritts ab —
+            Gestaltung, Hosting und das langsame, geduldige Pflegen
+            danach.
+          </p>
+        </div>
+
+        <div class="services__grid">
+          <article class="service">
+            <span class="service__num">01</span>
+            <div class="service__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.25">
+                <rect x="3" y="5" width="26" height="20" rx="1.5"/>
+                <path d="M3 11h26"/>
+                <circle cx="7" cy="8" r=".7" fill="currentColor"/>
+                <circle cx="10" cy="8" r=".7" fill="currentColor"/>
+                <circle cx="13" cy="8" r=".7" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3>Gestaltung &amp; <em>Aufbau</em></h3>
+            <p>Auftritte mit klarer Stimme, schweizerischem Mass und
+              ehrlicher Technik — handgesetzt, ohne Baukasten.</p>
+            <ul class="service__list">
+              <li>Konzept &amp; Inhalt</li>
+              <li>Identität &amp; Typografie</li>
+              <li>Statische Umsetzung</li>
+            </ul>
+          </article>
+
+          <article class="service">
+            <span class="service__num">02</span>
+            <div class="service__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.25">
+                <rect x="4" y="6" width="24" height="6" rx="1"/>
+                <rect x="4" y="14" width="24" height="6" rx="1"/>
+                <circle cx="8" cy="9" r=".7" fill="currentColor"/>
+                <circle cx="8" cy="17" r=".7" fill="currentColor"/>
+                <path d="M16 24v4M12 28h8"/>
+              </svg>
+            </div>
+            <h3>Hosting auf <em>Schweizer Boden</em></h3>
+            <p>Schnell, ruhig, redundant. SSL, Sicherungen, DNS und
+              E-Mail — von uns betreut, nie überlassen.</p>
+            <ul class="service__list">
+              <li>Schweizer Rechenzentrum</li>
+              <li>Tägliche Sicherungen</li>
+              <li>Schutz &amp; SSL inklusive</li>
+            </ul>
+          </article>
+
+          <article class="service">
+            <span class="service__num">03</span>
+            <div class="service__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.25">
+                <circle cx="16" cy="16" r="11"/>
+                <path d="M16 9v7l4 3"/>
+              </svg>
+            </div>
+            <h3>Verwaltung, <em>geduldig</em></h3>
+            <p>Inhalte aktualisieren, Updates fahren, Anrufe annehmen.
+              Eine feste Hand für Jahre — kein Ticket-System.</p>
+            <ul class="service__list">
+              <li>Inhalts-Pflege</li>
+              <li>Monatliche Berichte</li>
+              <li>Eine Telefonnummer</li>
+            </ul>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <div class="sheet" role="table" aria-label="Designrichtungen">
-      <div class="row head" role="row">
-        <div class="cell num" role="columnheader">№</div>
-        <div class="cell name" role="columnheader">Richtung</div>
-        <div class="cell type" role="columnheader">Typografie</div>
-        <div class="cell palette" role="columnheader">Palette</div>
-        <div role="columnheader"><span class="sr">Öffnen</span></div>
-      </div>
+    <!-- TEAM -->
+    <section class="team">
+      <div class="wrap">
+        <span class="label">Über uns · Drei Personen</span>
+        <h2>Klein genug, dass Sie<br/>wissen, <em>wer Ihre Seite kennt</em>.</h2>
 
-      <div class="row" role="row">
-        <div class="cell num" role="cell">01</div>
-        <div class="cell name" role="cell">
-          <strong>Swiss-minimal</strong>
-          <span>Raster, Ruhe, ein Akzent.</span>
+        <div class="team__grid">
+
+          <article class="person">
+            <div class="person__frame">
+              <span class="person__corner">N · 01</span>
+              <span class="person__corner-r">2026</span>
+              <img class="person__silhouette" src="images/Levin.png" alt="Porträt Levin Wolf" loading="lazy" decoding="async"/>
+            </div>
+            <h3 class="person__name">Levin <em>Wolf</em></h3>
+            <p class="person__role">Gestaltung · Frontend</p>
+            <p class="person__bio">
+              Setzt die Schrift, zeichnet das Raster, schreibt die
+              Stilbibel. Glaubt an Marginalien.
+            </p>
+          </article>
+
+          <article class="person">
+            <div class="person__frame">
+              <span class="person__corner">N · 02</span>
+              <span class="person__corner-r">2026</span>
+              <img class="person__silhouette" src="images/Paul.png" alt="Porträt Paul Ernst Werler" loading="lazy" decoding="async"/>
+            </div>
+            <h3 class="person__name">Paul Ernst <em>Werler</em></h3>
+            <p class="person__role">Strategie · Inhalt</p>
+            <p class="person__bio">
+              Sortiert das Gespräch, schreibt den ersten Satz und den
+              letzten. Wartet, bis es stimmt.
+            </p>
+          </article>
+
+          <article class="person">
+            <div class="person__frame">
+              <span class="person__corner">N · 03</span>
+              <span class="person__corner-r">2026</span>
+              <img class="person__silhouette" src="images/Isaac.png" alt="Porträt Isaac Lins" loading="lazy" decoding="async"/>
+            </div>
+            <h3 class="person__name">Isaac <em>Lins</em></h3>
+            <p class="person__role">Technik · Hosting</p>
+            <p class="person__bio">
+              Hält die Lichter an. Migriert ohne Drama, sichert vor
+              dem Schlafen, ruft zurück.
+            </p>
+          </article>
+
         </div>
-        <div class="cell type" role="cell">
-          <span>Switzer</span>
-          <em>einfamilienhaus</em>
-        </div>
-        <div class="cell palette" role="cell">
-          <div class="swatches" aria-hidden="true">
-            <i style="background:#FAFAFA"></i>
-            <i style="background:#0A0A0A"></i>
-            <i style="background:#E63946"></i>
+      </div>
+    </section>
+
+    <!-- REFERENCES -->
+    <section class="refs">
+      <div class="wrap">
+        <span class="label">Referenzen · Auswahl</span>
+        <h2>Auftritte, die wir<br/><em>nicht laut machen</em>.</h2>
+
+        <div class="refs__list">
+          <div class="refs__row">
+            <span class="num">01</span>
+            <span class="name">Atelier <em>Brunner</em></span>
+            <span class="kind">Schreinerei · Bern</span>
+            <span class="year">2023 →</span>
+          </div>
+          <div class="refs__row">
+            <span class="num">02</span>
+            <span class="name">Praxis Dr. <em>Hoffmann</em></span>
+            <span class="kind">Hausarzt · Thun</span>
+            <span class="year">2022 →</span>
+          </div>
+          <div class="refs__row">
+            <span class="num">03</span>
+            <span class="name">Treuhand <em>Berger &amp; Söhne</em></span>
+            <span class="kind">Treuhand · Biel</span>
+            <span class="year">2024 →</span>
+          </div>
+          <div class="refs__row">
+            <span class="num">04</span>
+            <span class="name">Pension <em>Stocker</em></span>
+            <span class="kind">Hotellerie · Adelboden</span>
+            <span class="year">2024 →</span>
+          </div>
+          <div class="refs__row">
+            <span class="num">05</span>
+            <span class="name">Käserei <em>Salvi</em></span>
+            <span class="kind">Lebensmittel · Emmental</span>
+            <span class="year">2025 →</span>
           </div>
         </div>
-        <a class="open" href="styles/01-swiss-minimal/index.html">Öffnen →</a>
       </div>
+    </section>
 
-      <div class="row" role="row">
-        <div class="cell num" role="cell">02</div>
-        <div class="cell name" role="cell">
-          <strong>Editorial-bold</strong>
-          <span>Magazin-Anmutung, grosse Serifen, Drop-Caps.</span>
+    <!-- CONTACT -->
+    <section id="site-contact" class="contact">
+      <div class="wrap contact__grid">
+        <div>
+          <span class="label">Kontakt · Direkt</span>
+          <h2>Erzählen Sie<br/>uns kurz, was<br/><em>ansteht</em>.</h2>
+          <p class="contact__lede">
+            Wir melden uns innert eines Arbeitstages. Kein
+            Anrufzentrum, kein Funnel — nur eine kurze Antwort
+            von einem der drei Namen oben.
+          </p>
+
+          <dl class="contact__details">
+            <div>
+              <dt>E-Mail</dt>
+              <dd>hallo@wolf-werler.ch</dd>
+            </div>
+            <div>
+              <dt>Telefon</dt>
+              <dd>+41 31 000 00 00</dd>
+            </div>
+            <div>
+              <dt>Atelier</dt>
+              <dd>Gerechtigkeitsgasse 12 · 3011 Bern</dd>
+            </div>
+          </dl>
         </div>
-        <div class="cell type" role="cell">
-          <span>Fraunces + IBM Plex Sans</span>
-          <em>display-serife + body-sans</em>
-        </div>
-        <div class="cell palette" role="cell">
-          <div class="swatches" aria-hidden="true">
-            <i style="background:#F5F1EA"></i>
-            <i style="background:#111111"></i>
-            <i style="background:#C58A2E"></i>
+
+        <form class="contact__form" onsubmit="event.preventDefault(); this.querySelector('.contact__notice').hidden = false;">
+          <div class="field">
+            <label for="site-name">Name</label>
+            <input id="site-name" type="text" required placeholder="Vorname Nachname" />
+          </div>
+          <div class="field">
+            <label for="site-mail">E-Mail</label>
+            <input id="site-mail" type="email" required placeholder="sie@firma.ch" />
+          </div>
+          <div class="field">
+            <label for="site-firma">Firma (optional)</label>
+            <input id="site-firma" type="text" placeholder="Ihre Firma" />
+          </div>
+          <div class="field">
+            <label for="site-msg">Worum geht es?</label>
+            <textarea id="site-msg" required rows="4" placeholder="Ein neuer Auftritt, eine Pflege­übernahme, eine Frage."></textarea>
+          </div>
+          <div class="btn-row" style="margin-top: 8px; align-items: center;">
+            <button type="submit" class="btn btn--light">
+              Senden
+              <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <span class="label" style="color: var(--mist)">Antwort innert 24 h</span>
+          </div>
+          <p class="contact__notice label" hidden style="margin-top:18px; color: var(--fog)">
+            Danke — Ihre Anfrage ist notiert. (Demo: nicht wirklich gesendet.)
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="foot">
+      <div class="wrap">
+        <div class="foot__inner">
+          <div>
+            <div class="foot__mark">Wolf<em>·</em>Werler</div>
+            <p class="label" style="margin-top:10px; color: var(--mist)">
+              Atelier · Bern · Schweiz
+            </p>
+          </div>
+          <div class="foot__col">
+            <h4>Studio</h4>
+            <ul>
+              <li><a href="#">Leistungen</a></li>
+              <li><a href="#">Referenzen</a></li>
+              <li><a href="#">Über uns</a></li>
+              <li><a href="#">Journal</a></li>
+            </ul>
+          </div>
+          <div class="foot__col">
+            <h4>Kontakt</h4>
+            <ul>
+              <li><a href="mailto:hallo@wolf-werler.ch">hallo@wolf-werler.ch</a></li>
+              <li><a href="tel:+41310000000">+41 31 000 00 00</a></li>
+              <li><a href="#">Gerechtigkeitsgasse 12</a></li>
+              <li><a href="#">3011 Bern</a></li>
+            </ul>
+          </div>
+          <div class="foot__col">
+            <h4>Rechtliches</h4>
+            <ul>
+              <li><a href="#">Impressum</a></li>
+              <li><a href="#">Datenschutz</a></li>
+              <li><a href="#">AGB</a></li>
+            </ul>
           </div>
         </div>
-        <a class="open" href="styles/02-editorial-bold/index.html">Öffnen →</a>
-      </div>
 
-      <div class="row" role="row">
-        <div class="cell num" role="cell">03</div>
-        <div class="cell name" role="cell">
-          <strong>Corporate-trust</strong>
-          <span>Strukturierte Karten, klare Hierarchie, vertrauenerweckend.</span>
+        <div class="foot__legal">
+          <span>© 2026 Wolf · Werler — Bern</span>
+          <span>Studie VI · Hochnebel · 01.06.2026</span>
         </div>
-        <div class="cell type" role="cell">
-          <span>Cabinet Grotesk + Synonym</span>
-          <em>display + body</em>
-        </div>
-        <div class="cell palette" role="cell">
-          <div class="swatches" aria-hidden="true">
-            <i style="background:#F4F7FB"></i>
-            <i style="background:#0B2545"></i>
-            <i style="background:#13315C"></i>
-            <i style="background:#1E88E5"></i>
-          </div>
-        </div>
-        <a class="open" href="styles/03-corporate-trust/index.html">Öffnen →</a>
       </div>
-
-      <div class="row" role="row">
-        <div class="cell num" role="cell">04</div>
-        <div class="cell name" role="cell">
-          <strong>Playful-founder</strong>
-          <span>Persönlich, warm, Team im Zentrum. Du-Form.</span>
-        </div>
-        <div class="cell type" role="cell">
-          <span>Bricolage Grotesque + Caveat</span>
-          <em>display + handschrift-akzent</em>
-        </div>
-        <div class="cell palette" role="cell">
-          <div class="swatches" aria-hidden="true">
-            <i style="background:#FFF8EE"></i>
-            <i style="background:#3D2C3F"></i>
-            <i style="background:#D96E4B"></i>
-            <i style="background:#7A9E7E"></i>
-          </div>
-        </div>
-        <a class="open" href="styles/04-playful-founder/index.html">Öffnen →</a>
-      </div>
-
-      <div class="row" role="row">
-        <div class="cell num" role="cell">05</div>
-        <div class="cell name" role="cell">
-          <strong>Boutique-warm</strong>
-          <span>Verfeinert, Architekturbüro-Anmutung, Messing-Akzent.</span>
-        </div>
-        <div class="cell type" role="cell">
-          <span>Boska + General Sans</span>
-          <em>display-serife + body-sans</em>
-        </div>
-        <div class="cell palette" role="cell">
-          <div class="swatches" aria-hidden="true">
-            <i style="background:#F6F1E7"></i>
-            <i style="background:#1C1A17"></i>
-            <i style="background:#A08456"></i>
-          </div>
-        </div>
-        <a class="open" href="styles/05-boutique-warm/index.html">Öffnen →</a>
-      </div>
-    </div>
-
-    <footer>
-      <div>Pro Richtung verfügbar: <b>Start · Leistungen · Kontakt</b>. Restliche Seiten folgen nach Wahl.</div>
-      <div>Hinweis: Das Kontaktformular ist verdrahtet auf <code>api.wolf-werler.ch/contact</code>, sendet in der Vorschau aber nichts — der Worker existiert noch nicht.</div>
-      <div>Inhalt: identische Platzhaltertexte aus <code>shared/content.js</code>. Bewerten Sie die Optik.</div>
     </footer>
-  </div>
-  <script src="shared/content.js"></script>
+
+  </section>
+
 </body>
 </html>

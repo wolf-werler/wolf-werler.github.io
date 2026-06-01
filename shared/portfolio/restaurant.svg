@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Restaurant">
-  <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M72 56 v52 a8 8 0 0 0 8 8 v40"/>
-    <path d="M82 56 v40"/>
-    <path d="M92 56 v52 a8 8 0 0 1 -8 8"/>
-    <path d="M128 56 c-10 0 -16 14 -16 28 c0 12 6 18 12 18 v54"/>
-  </g>
-</svg>
