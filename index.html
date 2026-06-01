@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Hochnebel — Designprüfung · Wolf · Werler</title>
-  <meta name="description" content="Moodboard und Heimseite-Entwurf für Wolf · Werler. Palette: Hochnebel über dem Mittelland." />
+  <title>Wolf · Werler · Webseiten, die still ihre Arbeit tun</title>
+  <meta name="description" content="Wolf · Werler gestaltet, hostet und pflegt Webseiten für Schweizer KMU." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -827,7 +827,7 @@
     }
     .refs__row{
       display: grid;
-      grid-template-columns: 70px minmax(0, 1.4fr) minmax(0, 1.2fr) auto;
+      grid-template-columns: 70px minmax(0, 1.4fr) minmax(0, 1.2fr) auto auto;
       align-items: center;
       gap: clamp(14px, 2vw, 28px);
       padding-block: 22px;
@@ -851,10 +851,54 @@
       font-family: var(--mono); font-size: 12px;
       color: var(--slate);
     }
+    .refs__open{
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--ink);
+      border: 1px solid var(--mist);
+      padding: 9px 14px;
+      border-radius: var(--r-1);
+      display: inline-flex; align-items: center; gap: 8px;
+      white-space: nowrap;
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
+    }
+    .refs__open:hover{
+      background: var(--ink); color: var(--fog); border-color: var(--ink);
+    }
+    .refs__open svg{ width: 11px; height: 11px; }
+    .refs__row--input .refs__input{
+      grid-column: 3 / 5;
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid var(--mist);
+      padding: 8px 0;
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: .02em;
+      color: var(--ink);
+      width: 100%;
+      transition: border-color .2s ease;
+    }
+    .refs__row--input .refs__input::placeholder{
+      color: color-mix(in oklab, var(--mist) 90%, transparent);
+    }
+    .refs__row--input .refs__input:focus{
+      outline: none;
+      border-bottom-color: var(--ink);
+    }
+    .refs__row--input .refs__open{
+      cursor: pointer;
+      font: inherit;
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: .14em; text-transform: uppercase;
+    }
     @media (max-width: 760px){
       .refs__row{ grid-template-columns: 36px 1fr auto; }
       .refs__row .kind{ grid-column: 2 / 4; font-size: 10px; }
       .refs__row .year{ grid-column: 3 / 4; grid-row: 1; justify-self: end; }
+      .refs__open{ grid-column: 1 / 4; justify-self: start; }
+      .refs__row--input .refs__input{ grid-column: 1 / 4; grid-row: 2; }
+      .refs__row--input .refs__open{ grid-column: 1 / 4; grid-row: 3; justify-self: start; }
     }
 
     /* Contact / CTA */
@@ -965,337 +1009,16 @@
 
     /* tiny details */
     ::selection{ background: var(--ink); color: var(--fog); }
+    /* Invert on dark sections so the selection stays visible. */
+    .contact ::selection,
+    .foot ::selection{ background: var(--fog); color: var(--ink); }
+    .contact ::-moz-selection,
+    .foot ::-moz-selection{ background: var(--fog); color: var(--ink); }
   </style>
 </head>
 <body>
 
-  <!-- ─────────────────────────────────────────────────────────── -->
-  <!-- SHEET BAR (moodboard header)                                -->
-  <!-- ─────────────────────────────────────────────────────────── -->
-  <header class="sheet-bar">
-    <div class="wrap sheet-bar__inner">
-      <div class="sheet-bar__mark">
-        Wolf<span class="dot"></span><em>Werler</em>
-      </div>
-      <nav class="sheet-bar__nav" aria-label="Sheet">
-        <a href="#moodboard">Moodboard</a>
-        <a href="#site">Heimseite</a>
-      </nav>
-      <div class="sheet-bar__meta">Hochnebel — V1 · 01.06.26</div>
-    </div>
-  </header>
-
-  <!-- ─────────────────────────────────────────────────────────── -->
-  <!-- PART I  —  MOODBOARD                                        -->
-  <!-- ─────────────────────────────────────────────────────────── -->
-  <main id="moodboard" class="mood">
-    <div class="wrap">
-
-      <!-- HERO of the moodboard -->
-      <section class="mood-hero">
-        <div>
-          <span class="label">Designprüfung · Sechste Studie</span>
-          <h1>Hoch&shy;<em>nebel</em>.</h1>
-        </div>
-        <aside class="mood-hero__aside">
-          <span class="label label--ink">Die Stimmung</span>
-          <p>Der ruhige, persistente Tiefnebel über dem Schweizer Mittelland.
-            Geschiefert, leise, konzentriert. Eine Marke, die mehr verspricht
-            als sie sagt — und mehr einlöst als sie verspricht.</p>
-          <div class="mood-hero__coords">
-            <span>System</span><span>4 Werte · Kalt-Grau</span>
-            <span>Typografie</span><span>Serif · Sans · Mono</span>
-            <span>Stimme</span><span>Sie · Trocken · Klar</span>
-            <span>Tempo</span><span>Editorial · Atmend</span>
-          </div>
-        </aside>
-      </section>
-
-      <!-- 01 — PALETTE -->
-      <section>
-        <header class="sec-h">
-          <div class="sec-h__num">01 · Palette</div>
-          <h2 class="sec-h__title">Vier Werte, ein <em>Nebel</em>.</h2>
-        </header>
-
-        <div class="palette" role="list" aria-label="Farbpalette">
-          <article class="swatch swatch--fog" role="listitem">
-            <div>
-              <span class="label">01 · Hintergrund</span>
-              <h3 class="swatch__name" style="margin-top:8px">Nebel</h3>
-            </div>
-            <div class="swatch__meta">
-              <p class="swatch__role">Papier, Seitenfläche, Lichtraum. Trägt allen Text.</p>
-              <span class="swatch__hex">#D8E4EA</span>
-            </div>
-          </article>
-
-          <article class="swatch swatch--mist" role="listitem">
-            <div>
-              <span class="label">02 · Ornament</span>
-              <h3 class="swatch__name" style="margin-top:8px">Dunst</h3>
-            </div>
-            <div class="swatch__meta">
-              <p class="swatch__role">Haarlinien, Rasterpunkte, Trennzeichen. Nie Text.</p>
-              <span class="swatch__hex">#97B0BE</span>
-            </div>
-          </article>
-
-          <article class="swatch swatch--slate" role="listitem">
-            <div>
-              <span class="label">03 · Akzent</span>
-              <h3 class="swatch__name" style="margin-top:8px">Schiefer</h3>
-            </div>
-            <div class="swatch__meta">
-              <p class="swatch__role">Kursive, Ikonen, mittlere Flächen. Spannung im Bild.</p>
-              <span class="swatch__hex">#567C91</span>
-            </div>
-          </article>
-
-          <article class="swatch swatch--ink" role="listitem">
-            <div>
-              <span class="label">04 · Tinte</span>
-              <h3 class="swatch__name" style="margin-top:8px">Tinte</h3>
-            </div>
-            <div class="swatch__meta">
-              <p class="swatch__role">Fliesstext, Knöpfe, tiefe Sektionen. Das Gewicht.</p>
-              <span class="swatch__hex">#324C5B</span>
-            </div>
-          </article>
-        </div>
-
-        <!-- contrast cells -->
-        <div class="contrast" aria-label="Kontrast (WCAG)">
-          <div class="contrast__cell">
-            <span class="label">Tinte · auf Nebel</span>
-            <div class="contrast__row">
-              <span class="contrast__pair">
-                <span class="contrast__chip" style="background:#324C5B"></span>
-                <span class="contrast__chip" style="background:#D8E4EA"></span>
-                Aa
-              </span>
-              <span class="contrast__verdict">6.98 · AA</span>
-            </div>
-          </div>
-          <div class="contrast__cell">
-            <span class="label">Nebel · auf Tinte</span>
-            <div class="contrast__row">
-              <span class="contrast__pair">
-                <span class="contrast__chip" style="background:#D8E4EA"></span>
-                <span class="contrast__chip" style="background:#324C5B"></span>
-                Aa
-              </span>
-              <span class="contrast__verdict">6.98 · AA</span>
-            </div>
-          </div>
-          <div class="contrast__cell">
-            <span class="label">Schiefer · auf Nebel</span>
-            <div class="contrast__row">
-              <span class="contrast__pair">
-                <span class="contrast__chip" style="background:#567C91"></span>
-                <span class="contrast__chip" style="background:#D8E4EA"></span>
-                Aa
-              </span>
-              <span class="contrast__verdict contrast__verdict--soft">3.46 · gross</span>
-            </div>
-          </div>
-          <div class="contrast__cell">
-            <span class="label">Dunst · auf Nebel</span>
-            <div class="contrast__row">
-              <span class="contrast__pair">
-                <span class="contrast__chip" style="background:#97B0BE"></span>
-                <span class="contrast__chip" style="background:#D8E4EA"></span>
-                Aa
-              </span>
-              <span class="contrast__verdict contrast__verdict--no">nur Ornament</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 02 — TYPOGRAPHY -->
-      <section>
-        <header class="sec-h">
-          <div class="sec-h__num">02 · Typografie</div>
-          <h2 class="sec-h__title">Eine Serife, eine Grotesk, eine <em>Markierung</em>.</h2>
-        </header>
-
-        <div class="type">
-          <div class="specimen">
-            <span class="label">Display · Instrument Serif</span>
-            <p class="specimen__big">Aa <em>Bb</em></p>
-            <p class="specimen__sample" style="margin-top:18px">
-              Die Schrift trägt das Versprechen. Hohe Strichkontraste,
-              spannende Kursive, schmale Versalien — ein Werkzeug für
-              <b>Schlagzeilen, die ihre Stimme nicht heben müssen.</b>
-            </p>
-            <div class="specimen__meta">
-              <span>Regular · Italic</span>
-              <span>−0.022 em · 0.94 lh</span>
-            </div>
-          </div>
-
-          <div class="specimen">
-            <span class="label">Text · Manrope</span>
-            <div class="specimen__waterfall" aria-hidden="true">
-              <span class="w1">Verwaltung mit Substanz.</span>
-              <span class="w2">Webseiten, die nach drei Jahren noch funktionieren.</span>
-              <span class="w3">Wir betreuen, wenn es leise wird.</span>
-              <span class="w4">Leistungen · Referenzen · Kontakt</span>
-              <span class="w5">CHF · WIRTSCHAFT · 2026</span>
-            </div>
-            <div class="specimen__meta">
-              <span>300 · 400 · 500 · 600 · 700</span>
-              <span>Geometric · Soft</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 03 — VOICE & MOOD -->
-      <section>
-        <header class="sec-h">
-          <div class="sec-h__num">03 · Stimme &amp; Stimmung</div>
-          <h2 class="sec-h__title">Sie. Trocken. <em>Verbindlich.</em></h2>
-        </header>
-
-        <div class="voice">
-          <div>
-            <p class="voice__quote">
-              Wir bauen keine grossen Auftritte. Wir bauen Auftritte,
-              die <em>klein bleiben können</em>, weil sie still
-              ihre Arbeit tun.
-            </p>
-            <div class="voice__attribution">
-              <span class="label">Tonalität · Heimseite-Lede</span>
-            </div>
-          </div>
-
-          <div>
-            <span class="label" style="display:block;margin-bottom:16px">Stimmungs-Wörter</span>
-            <div class="keywords">
-              <span class="kw kw--ink">Hochnebel</span>
-              <span class="kw">Schiefer</span>
-              <span class="kw">Editorial</span>
-              <span class="kw kw--slate">Verbindlich</span>
-              <span class="kw">Atmend</span>
-              <span class="kw">Atelier</span>
-              <span class="kw kw--ink">Schweizer Stille</span>
-              <span class="kw">Werkstatt</span>
-              <span class="kw">Geheftet</span>
-              <span class="kw">Trocken</span>
-              <span class="kw">Kompetent</span>
-              <span class="kw">Langsam genug</span>
-            </div>
-
-            <span class="label" style="display:block;margin: 36px 0 14px">Anti-Wörter</span>
-            <div class="keywords">
-              <span class="kw">— laut</span>
-              <span class="kw">— trendy</span>
-              <span class="kw">— bunt</span>
-              <span class="kw">— „innovativ“</span>
-              <span class="kw">— animiert</span>
-              <span class="kw">— scrolly-tell</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 04 — PATTERN STRIP -->
-      <section>
-        <header class="sec-h">
-          <div class="sec-h__num">04 · Atmosphäre</div>
-          <h2 class="sec-h__title">Raster, Hauche, <em>Linien</em>.</h2>
-        </header>
-
-        <div class="patterns">
-          <div class="pat pat--dots"><span class="pat__label">Rasterpunkt · 14 px</span></div>
-          <div class="pat pat--rules"><span class="pat__label">Liniatur · 14 px</span></div>
-          <div class="pat pat--fog"><span class="pat__label">Hochnebel · Verlauf</span></div>
-          <div class="pat pat--ink"><span class="pat__label">Tinte · Tiefe</span></div>
-        </div>
-      </section>
-
-      <!-- 05 — COMPONENTS -->
-      <section>
-        <header class="sec-h">
-          <div class="sec-h__num">05 · Bausteine</div>
-          <h2 class="sec-h__title">Knöpfe, Karten, <em>Felder</em>.</h2>
-        </header>
-
-        <div class="components">
-          <!-- buttons + card column -->
-          <div class="comp">
-            <span class="label comp__title">Aktionen</span>
-
-            <div class="btn-row" style="margin-bottom: 22px">
-              <button class="btn" type="button">
-                Anfrage senden
-                <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </button>
-              <button class="btn btn--ghost" type="button">Leistungen</button>
-            </div>
-
-            <hr class="hair" style="margin-block: 20px"/>
-
-            <span class="label comp__title">Karte · Referenz</span>
-            <div class="card">
-              <div class="card__top">
-                <span class="card__index">REF · 03 / 12</span>
-                <span class="card__dot"></span>
-              </div>
-              <h4 class="card__title">Atelier <em>Brunner</em>, Bern.</h4>
-              <p class="card__copy">
-                Vier Seiten, eine ruhige Buchungsstrecke, monatliche
-                Pflege. Seit 2023 ohne ein einziges Ticket.
-              </p>
-              <a href="#" class="card__more">
-                Fall lesen
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- form column -->
-          <div class="comp">
-            <span class="label comp__title">Formular · Feld</span>
-            <div class="field">
-              <label for="moodboard-name">Name</label>
-              <input id="moodboard-name" type="text" placeholder="Vorname Nachname" />
-            </div>
-            <div class="field">
-              <label for="moodboard-mail">E-Mail</label>
-              <input id="moodboard-mail" type="email" placeholder="sie@firma.ch" />
-            </div>
-            <div class="field">
-              <label for="moodboard-msg">Anliegen</label>
-              <textarea id="moodboard-msg" placeholder="Worum geht es?"></textarea>
-            </div>
-            <div class="btn-row" style="margin-top: 10px">
-              <button class="btn" type="button">Absenden</button>
-              <span class="label" style="align-self:center">Antwort innert 24 h</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </div>
-  </main>
-
-  <!-- ─────────────────────────────────────────────────────────── -->
-  <!-- DIVIDER between moodboard and homepage mockup               -->
-  <!-- ─────────────────────────────────────────────────────────── -->
-  <div id="site" class="site-divider">
-    <div class="wrap">
-      <span class="label label--fog">II · Heimseite — Entwurf</span>
-      <span class="label label--fog">↓ Hochnebel, angewendet</span>
-    </div>
-  </div>
-
-  <!-- ─────────────────────────────────────────────────────────── -->
-  <!-- PART II  —  HOMEPAGE MOCKUP                                 -->
-  <!-- ─────────────────────────────────────────────────────────── -->
-  <section class="site" aria-label="Heimseite-Entwurf">
+  <main class="site">
 
     <!-- NAV -->
     <nav class="nav">
@@ -1326,8 +1049,8 @@
         <h1>Webseiten, die <em>still</em> ihre Arbeit tun.</h1>
         <p class="hero__lede">
           Wir gestalten, hosten und pflegen Auftritte für Schweizer
-          KMU. Klein, langlebig, präzise — und so wartungsarm, dass
-          Sie uns vergessen können.
+          KMU. Klein, langlebig, präzise. So wartungsarm, dass Sie
+          uns vergessen können.
         </p>
         <div class="hero__cta">
           <a href="#site-contact" class="btn">
@@ -1340,15 +1063,15 @@
         <dl class="hero__meta">
           <div>
             <dt>Sitz</dt>
-            <dd>Bern · Schweiz</dd>
+            <dd>Zürich · Schweiz</dd>
           </div>
           <div>
             <dt>Im Atelier</dt>
-            <dd>Seit <em style="font-style:italic;color:var(--slate)">2021</em></dd>
+            <dd>Seit <em style="font-style:italic;color:var(--slate)">2022</em></dd>
           </div>
           <div>
             <dt>Auftritte in Pflege</dt>
-            <dd>32 · und wachsend</dd>
+            <dd>3 · und wachsend</dd>
           </div>
         </dl>
       </div>
@@ -1361,7 +1084,7 @@
           <h2>Drei Dinge,<br/><em>vollständig</em>.</h2>
           <p class="services__intro">
             Wir teilen unsere Arbeit nicht in zwölf Pakete auf. Was wir
-            anbieten, decken wir bis zum letzten Tag des Auftritts ab —
+            anbieten, decken wir bis zum letzten Tag des Auftritts ab.
             Gestaltung, Hosting und das langsame, geduldige Pflegen
             danach.
           </p>
@@ -1381,7 +1104,7 @@
             </div>
             <h3>Gestaltung &amp; <em>Aufbau</em></h3>
             <p>Auftritte mit klarer Stimme, schweizerischem Mass und
-              ehrlicher Technik — handgesetzt, ohne Baukasten.</p>
+              ehrlicher Technik. Handgesetzt, ohne Baukasten.</p>
             <ul class="service__list">
               <li>Konzept &amp; Inhalt</li>
               <li>Identität &amp; Typografie</li>
@@ -1402,7 +1125,7 @@
             </div>
             <h3>Hosting auf <em>Schweizer Boden</em></h3>
             <p>Schnell, ruhig, redundant. SSL, Sicherungen, DNS und
-              E-Mail — von uns betreut, nie überlassen.</p>
+              Mail. Von uns betreut, nie überlassen.</p>
             <ul class="service__list">
               <li>Schweizer Rechenzentrum</li>
               <li>Tägliche Sicherungen</li>
@@ -1420,9 +1143,9 @@
             </div>
             <h3>Verwaltung, <em>geduldig</em></h3>
             <p>Inhalte aktualisieren, Updates fahren, Anrufe annehmen.
-              Eine feste Hand für Jahre — kein Ticket-System.</p>
+              Eine feste Hand für Jahre. Kein Ticketsystem.</p>
             <ul class="service__list">
-              <li>Inhalts-Pflege</li>
+              <li>Inhaltspflege</li>
               <li>Monatliche Berichte</li>
               <li>Eine Telefonnummer</li>
             </ul>
@@ -1488,39 +1211,48 @@
     <!-- REFERENCES -->
     <section class="refs">
       <div class="wrap">
-        <span class="label">Referenzen · Auswahl</span>
+        <span class="label">Referenzen</span>
         <h2>Auftritte, die wir<br/><em>nicht laut machen</em>.</h2>
 
         <div class="refs__list">
           <div class="refs__row">
             <span class="num">01</span>
-            <span class="name">Atelier <em>Brunner</em></span>
-            <span class="kind">Schreinerei · Bern</span>
-            <span class="year">2023 →</span>
+            <span class="name">Phasuk <em>Velo &amp; Mofa</em></span>
+            <span class="kind">Werkstatt · Service</span>
+            <span class="year">2025 →</span>
+            <a class="refs__open" href="https://wolf-werler.ch/phasuk-velo-mofa-service/" target="_blank" rel="noopener">
+              Öffnen
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </a>
           </div>
           <div class="refs__row">
             <span class="num">02</span>
-            <span class="name">Praxis Dr. <em>Hoffmann</em></span>
-            <span class="kind">Hausarzt · Thun</span>
-            <span class="year">2022 →</span>
+            <span class="name">Galaxy <em>Nails</em></span>
+            <span class="kind">Nagelstudio</span>
+            <span class="year">2025 →</span>
+            <a class="refs__open" href="https://wolf-werler.ch/Galaxy-Nails-frontend/" target="_blank" rel="noopener">
+              Öffnen
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </a>
           </div>
           <div class="refs__row">
             <span class="num">03</span>
-            <span class="name">Treuhand <em>Berger &amp; Söhne</em></span>
-            <span class="kind">Treuhand · Biel</span>
-            <span class="year">2024 →</span>
-          </div>
-          <div class="refs__row">
-            <span class="num">04</span>
-            <span class="name">Pension <em>Stocker</em></span>
-            <span class="kind">Hotellerie · Adelboden</span>
-            <span class="year">2024 →</span>
-          </div>
-          <div class="refs__row">
-            <span class="num">05</span>
-            <span class="name">Käserei <em>Salvi</em></span>
-            <span class="kind">Lebensmittel · Emmental</span>
+            <span class="name">Power<em>usermail</em></span>
+            <span class="kind">Inboxwerkzeug</span>
             <span class="year">2025 →</span>
+            <a class="refs__open" href="https://isaaclins.com/powerusermail/" target="_blank" rel="noopener">
+              Öffnen
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </a>
+          </div>
+          <div class="refs__row refs__row--input">
+            <span class="num">04</span>
+            <span class="name">Dein <em>Projekt?</em></span>
+            <input class="refs__input" type="text" data-refs-input placeholder="Worum geht es?" aria-label="Dein Projekt kurz beschreiben"/>
+            <button type="button" class="refs__open" data-refs-prefill>
+              Öffnen
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </button>
           </div>
         </div>
       </div>
@@ -1530,26 +1262,22 @@
     <section id="site-contact" class="contact">
       <div class="wrap contact__grid">
         <div>
-          <span class="label">Kontakt · Direkt</span>
+          <span class="label">Kontakt</span>
           <h2>Erzählen Sie<br/>uns kurz, was<br/><em>ansteht</em>.</h2>
           <p class="contact__lede">
             Wir melden uns innert eines Arbeitstages. Kein
-            Anrufzentrum, kein Funnel — nur eine kurze Antwort
+            Anrufzentrum, kein Funnel. Nur eine kurze Antwort
             von einem der drei Namen oben.
           </p>
 
           <dl class="contact__details">
             <div>
-              <dt>E-Mail</dt>
+              <dt>Mail</dt>
               <dd>hallo@wolf-werler.ch</dd>
             </div>
             <div>
               <dt>Telefon</dt>
-              <dd>+41 31 000 00 00</dd>
-            </div>
-            <div>
-              <dt>Atelier</dt>
-              <dd>Gerechtigkeitsgasse 12 · 3011 Bern</dd>
+              <dd>+41 78 690 96 76</dd>
             </div>
           </dl>
         </div>
@@ -1560,7 +1288,7 @@
             <input id="site-name" type="text" required placeholder="Vorname Nachname" />
           </div>
           <div class="field">
-            <label for="site-mail">E-Mail</label>
+            <label for="site-mail">Mail</label>
             <input id="site-mail" type="email" required placeholder="sie@firma.ch" />
           </div>
           <div class="field">
@@ -1569,7 +1297,7 @@
           </div>
           <div class="field">
             <label for="site-msg">Worum geht es?</label>
-            <textarea id="site-msg" required rows="4" placeholder="Ein neuer Auftritt, eine Pflege­übernahme, eine Frage."></textarea>
+            <textarea id="site-msg" required rows="4" placeholder="Ein neuer Auftritt, eine Pflegeübernahme, eine Frage."></textarea>
           </div>
           <div class="btn-row" style="margin-top: 8px; align-items: center;">
             <button type="submit" class="btn btn--light">
@@ -1579,7 +1307,7 @@
             <span class="label" style="color: var(--mist)">Antwort innert 24 h</span>
           </div>
           <p class="contact__notice label" hidden style="margin-top:18px; color: var(--fog)">
-            Danke — Ihre Anfrage ist notiert. (Demo: nicht wirklich gesendet.)
+            Danke. Ihre Anfrage ist notiert. (Demo: nicht wirklich gesendet.)
           </p>
         </form>
       </div>
@@ -1592,7 +1320,7 @@
           <div>
             <div class="foot__mark">Wolf<em>·</em>Werler</div>
             <p class="label" style="margin-top:10px; color: var(--mist)">
-              Atelier · Bern · Schweiz
+              Atelier · Zürich · Schweiz
             </p>
           </div>
           <div class="foot__col">
@@ -1608,9 +1336,8 @@
             <h4>Kontakt</h4>
             <ul>
               <li><a href="mailto:hallo@wolf-werler.ch">hallo@wolf-werler.ch</a></li>
-              <li><a href="tel:+41310000000">+41 31 000 00 00</a></li>
-              <li><a href="#">Gerechtigkeitsgasse 12</a></li>
-              <li><a href="#">3011 Bern</a></li>
+              <li><a href="tel:+41786909676">+41 78 690 96 76</a></li>
+              <li>Zürich · Schweiz</li>
             </ul>
           </div>
           <div class="foot__col">
@@ -1624,13 +1351,28 @@
         </div>
 
         <div class="foot__legal">
-          <span>© 2026 Wolf · Werler — Bern</span>
-          <span>Studie VI · Hochnebel · 01.06.2026</span>
+          <span>© 2026 Wolf · Werler · Zürich</span>
         </div>
       </div>
     </footer>
 
-  </section>
+  </main>
+
+  <script>
+    // "Dein Projekt?" row → carry text into the contact form and scroll.
+    (function () {
+      var btn = document.querySelector('[data-refs-prefill]');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var input = document.querySelector('[data-refs-input]');
+        var msg = document.getElementById('site-msg');
+        var section = document.getElementById('site-contact');
+        if (msg && input && input.value.trim()) msg.value = input.value.trim();
+        if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (msg) setTimeout(function () { msg.focus({ preventScroll: true }); }, 450);
+      });
+    })();
+  </script>
 
 </body>
 </html>
