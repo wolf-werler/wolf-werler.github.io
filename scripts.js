@@ -24,12 +24,17 @@ import "@fontsource/jetbrains-mono/500.css";
       setTimeout(function () {
         if (label) label.textContent = defaultLabel;
         btn.dataset.copied = "false";
+        // Drop focus so the button stops looking "active" on touch devices.
+        if (typeof btn.blur === "function") btn.blur();
       }, 1600);
     }
 
     btn.addEventListener("click", function () {
       var text = btn.dataset.copy;
       if (!text) return;
+
+      // Reset any lingering state so a fresh tap shows the flash again.
+      btn.dataset.copied = "false";
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(function () {
@@ -147,8 +152,15 @@ import "@fontsource/jetbrains-mono/500.css";
         var tFieldReset = form.querySelector('[name="t"]');
         if (tFieldReset) tFieldReset.value = String(Date.now());
 
-        if (notice) notice.hidden = false;
-        setStatus("Danke. Nachricht ist angekommen.", "ok");
+        // Show the persistent thanks panel, scroll it into view, and
+        // mute the small status label (the panel carries the message).
+        if (notice) {
+          notice.hidden = false;
+          if (typeof notice.scrollIntoView === "function") {
+            notice.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+        }
+        setStatus("", null);
         if (label) label.textContent = "Gesendet";
         setTimeout(function () {
           if (label) label.textContent = prevLabel;

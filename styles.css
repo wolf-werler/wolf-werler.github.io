@@ -98,9 +98,11 @@ img,svg{ display:block; max-width:100%; }
   cursor: pointer;
   transition: background .25s ease, color .25s ease, border-color .25s ease, transform .25s ease;
 }
-.btn:hover{ background: var(--slate); border-color: var(--slate); }
 .btn--ghost{ background: transparent; color: var(--ink); border-color: var(--ink); }
-.btn--ghost:hover{ background: var(--ink); color: var(--fog); }
+@media (hover: hover) {
+  .btn:hover{ background: var(--slate); border-color: var(--slate); }
+  .btn--ghost:hover{ background: var(--ink); color: var(--fog); }
+}
 .btn--light{ background: var(--fog); color: var(--ink); border-color: var(--fog); }
 .btn__arrow{ width: 14px; height: 14px; }
 .btn-row{ display: flex; flex-wrap: wrap; gap: 10px; }
@@ -426,8 +428,10 @@ img,svg{ display:block; max-width:100%; }
   white-space: nowrap;
   transition: background .2s ease, color .2s ease, border-color .2s ease;
 }
-.refs__open:hover{
-  background: var(--ink); color: var(--fog); border-color: var(--ink);
+@media (hover: hover) {
+  .refs__open:hover{
+    background: var(--ink); color: var(--fog); border-color: var(--ink);
+  }
 }
 .refs__open svg{ width: 11px; height: 11px; }
 .refs__row--input .refs__input{
@@ -574,8 +578,28 @@ img,svg{ display:block; max-width:100%; }
 .contact__form .btn--light{
   background: var(--fog); color: var(--ink); border-color: var(--fog);
 }
-.contact__form .btn--light:hover{
-  background: var(--mist); border-color: var(--mist); color: var(--ink);
+@media (hover: hover) {
+  .contact__form .btn--light:hover{
+    background: var(--mist); border-color: var(--mist); color: var(--ink);
+  }
+}
+
+/* Persistent thanks panel after a successful form submission. */
+.contact__notice{
+  margin-top: 22px;
+  padding: 16px 18px;
+  border: 1px solid color-mix(in oklab, var(--fog) 30%, transparent);
+  background: color-mix(in oklab, var(--fog) 8%, transparent);
+  border-radius: var(--r-2);
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--fog);
+}
+.contact__notice strong{
+  font-weight: 400;
+  font-style: italic;
+  color: var(--mist);
 }
 
 /* Copy-to-clipboard chip used in .contact__details */
@@ -591,13 +615,20 @@ img,svg{ display:block; max-width:100%; }
   cursor: pointer;
   transition: background .2s ease, color .2s ease, border-color .2s ease;
 }
-.copy-btn:hover{
-  background: var(--fog); color: var(--ink); border-color: var(--fog);
+/* Hover only on real pointer devices — prevents iOS Safari's sticky
+   :hover state from leaving the button "pressed" after a tap. */
+@media (hover: hover) {
+  .copy-btn:hover{
+    background: var(--fog); color: var(--ink); border-color: var(--fog);
+  }
 }
 .copy-btn svg{ width: 11px; height: 11px; }
 .copy-btn[data-copied="true"]{
   background: var(--fog); color: var(--ink); border-color: var(--fog);
 }
+/* Strip the focus ring after click; keyboard users still get :focus-visible. */
+.copy-btn:focus{ outline: none; }
+.copy-btn:focus-visible{ outline: 2px solid var(--fog); outline-offset: 2px; }
 
 /* ────────────────────────────────────────────────────────────
    FOOTER
