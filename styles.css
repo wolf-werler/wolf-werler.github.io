@@ -140,8 +140,14 @@ img,svg{ display:block; max-width:100%; }
    NAV — shared across pages
    ──────────────────────────────────────────────────────────── */
 .nav{
+  position: sticky;
+  top: 0;
+  z-index: 50;
   padding-block: 22px;
   border-bottom: 1px solid var(--mist-30);
+  background-color: color-mix(in oklab, var(--fog) 88%, transparent);
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
 }
 .nav__inner{
   display: grid;
