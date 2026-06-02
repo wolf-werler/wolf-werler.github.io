@@ -13,7 +13,7 @@
     toggle.className = "nav__toggle";
     toggle.setAttribute("aria-label", "Menü öffnen");
     toggle.setAttribute("aria-expanded", "false");
-    toggle.innerHTML = '<span></span><span></span>';
+    toggle.innerHTML = '<span></span><span></span><span></span>';
     navInner.appendChild(toggle);
 
     // The bottom CTA in the menu panel doubles as the close button while

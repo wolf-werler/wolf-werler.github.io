@@ -207,12 +207,16 @@ img,svg{ display:block; max-width:100%; }
   border-radius: 1px;
   transition: top .25s ease, transform .25s ease, opacity .2s ease;
 }
-.nav__toggle span:nth-child(1){ top: 15px; }
-.nav__toggle span:nth-child(2){ top: 21px; }
+.nav__toggle span:nth-child(1){ top: 12px; }
+.nav__toggle span:nth-child(2){ top: 18px; }
+.nav__toggle span:nth-child(3){ top: 24px; }
 body[data-nav-open="true"] .nav__toggle span:nth-child(1){
   top: 18px; transform: rotate(45deg);
 }
 body[data-nav-open="true"] .nav__toggle span:nth-child(2){
+  opacity: 0;
+}
+body[data-nav-open="true"] .nav__toggle span:nth-child(3){
   top: 18px; transform: rotate(-45deg);
 }
 
@@ -813,15 +817,17 @@ body[data-nav-open="true"] .nav__toggle span:nth-child(2){
 .contact ::-moz-selection,
 .foot ::-moz-selection{ background: var(--fog); color: var(--ink); }
 
-/* Small W emblem above the nav on some pages — kept tiny so the
-   200×200 SVG doesn't render at full viewport width. */
-.site-logo{
-  display: block;
-  width: 56px;
-  height: 56px;
-  margin: 14px 0 0 var(--gutter);
+/* Small W emblem above the nav on some pages — desktop only.
+   Hidden on mobile (the wordmark in the nav carries the brand alone).
+   Scoped to min-width so the cascade can't accidentally re-show it
+   under the mobile media query. */
+@media (min-width: 761px) {
+  .site-logo{
+    display: block;
+    width: 56px;
+    height: 56px;
+    margin: 14px 0 0 var(--gutter);
+  }
+  .site-logo img{ width: 100%; height: 100%; display: block; }
 }
-.site-logo img{ width: 100%; height: 100%; display: block; }
-@media (max-width: 640px){
-  .site-logo{ width: 44px; height: 44px; margin-top: 10px; }
-}
+.site-logo{ display: none; }
