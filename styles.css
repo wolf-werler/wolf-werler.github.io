@@ -636,7 +636,10 @@ img,svg{ display:block; max-width:100%; }
    FOOTER
    ──────────────────────────────────────────────────────────── */
 .foot{
-  padding-block: 36px 32px;
+  /* Bottom padding includes the iOS home-indicator safe area so the
+     footer's ink bg covers the strip below the visible content. */
+  padding-top: 36px;
+  padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
   background: var(--ink);
   color: color-mix(in oklab, var(--fog) 72%, transparent);
   border-top: 1px solid color-mix(in oklab, var(--fog) 10%, transparent);
