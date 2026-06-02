@@ -249,7 +249,7 @@ body[data-nav-open="true"] .nav__toggle span:nth-child(3){
      it sits immediately after the last link in source order. */
   .nav__links{
     position: fixed;
-    top: 73px;
+    top: var(--nav-h, 73px);
     left: 0;
     right: 0;
     bottom: 0;
