@@ -78,10 +78,26 @@
       }
     });
 
-    // If the viewport grows past mobile, reset state.
+    // On mobile, move .nav__cta to the end of .nav__links so the
+    // Schliessen button flows immediately after Kontakt with no gap.
+    // On desktop, put it back as a direct child of .nav__inner.
+    var navLinksEl = document.querySelector(".nav__links");
+    var navCtaEl = document.querySelector(".nav__cta");
+    function syncCtaPlacement(isMobile) {
+      if (!navLinksEl || !navCtaEl) return;
+      if (isMobile) {
+        if (navCtaEl.parentNode !== navLinksEl) navLinksEl.appendChild(navCtaEl);
+      } else {
+        if (navCtaEl.parentNode !== navInner) navInner.appendChild(navCtaEl);
+      }
+    }
+
+    // If the viewport grows past mobile, reset state + reparent the CTA.
     var mq = window.matchMedia("(min-width: 761px)");
+    syncCtaPlacement(!mq.matches);
     function onResize() {
       if (mq.matches) setOpen(false);
+      syncCtaPlacement(!mq.matches);
     }
     if (typeof mq.addEventListener === "function") {
       mq.addEventListener("change", onResize);

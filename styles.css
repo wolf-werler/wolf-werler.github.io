@@ -241,29 +241,30 @@ body[data-nav-open="true"] .nav__toggle span:nth-child(3){
     justify-self: end;
   }
 
-  /* Slide-down overlay panel containing the links + CTA. */
-  .nav__links,
-  .nav__cta{
+  /* Single overlay panel: links + CTA flow as one column, no gap.
+     The CTA is moved INSIDE .nav__links by scripts.js on mobile so
+     it sits immediately after the last link in source order. */
+  .nav__links{
     position: fixed;
+    top: 73px;
     left: 0;
     right: 0;
+    bottom: 0;
+    z-index: 48;
+    padding: 24px var(--gutter) calc(24px + env(safe-area-inset-bottom, 0));
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    overflow-y: auto;
     background: color-mix(in oklab, var(--fog) 97%, transparent);
     backdrop-filter: saturate(140%) blur(14px);
     -webkit-backdrop-filter: saturate(140%) blur(14px);
-    z-index: 48;
+    border-top: 1px solid var(--mist-30);
     opacity: 0;
     pointer-events: none;
     transform: translateY(-6px);
     transition: opacity .22s ease, transform .25s ease;
-  }
-  .nav__links{
-    top: 73px;
-    padding: 28px var(--gutter) 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    border-top: 1px solid var(--mist-30);
   }
   .nav__links a{
     font-family: var(--serif);
@@ -277,16 +278,12 @@ body[data-nav-open="true"] .nav__toggle span:nth-child(3){
     width: 100%;
     border-bottom: 1px solid var(--mist-30);
   }
-  .nav__links a:last-child{ border-bottom: 0; }
   .nav__links a.active{ font-style: italic; color: var(--slate); }
   .nav__links a.active::after{ display: none; }
 
-  .nav__cta{
-    top: auto;
-    bottom: 0;
-    padding: 18px var(--gutter) calc(18px + env(safe-area-inset-bottom, 0));
-    justify-self: stretch;
-    border-top: 1px solid var(--mist-30);
+  /* CTA now lives inside .nav__links — no fixed positioning. */
+  .nav__links .nav__cta{
+    margin-top: 18px;
   }
   .nav__cta .btn{
     width: 100%;
@@ -295,8 +292,7 @@ body[data-nav-open="true"] .nav__toggle span:nth-child(3){
     font-size: 14px;
   }
 
-  /* Click-catcher behind the panels — taps anywhere in the visible gap
-     between the top links and the bottom CTA close the menu. */
+  /* Click-catcher behind the panel. */
   .nav__backdrop{
     position: fixed;
     inset: 0;
@@ -311,8 +307,7 @@ body[data-nav-open="true"] .nav__toggle span:nth-child(3){
     pointer-events: auto;
   }
 
-  body[data-nav-open="true"] .nav__links,
-  body[data-nav-open="true"] .nav__cta{
+  body[data-nav-open="true"] .nav__links{
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
