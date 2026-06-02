@@ -5,6 +5,51 @@
    bundler). */
 
 (function () {
+  /* ───── 0. Mobile menu — inject toggle, slide-down panel ────── */
+  var navInner = document.querySelector(".nav__inner");
+  if (navInner) {
+    var toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "nav__toggle";
+    toggle.setAttribute("aria-label", "Menü öffnen");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.innerHTML = '<span></span><span></span>';
+    navInner.appendChild(toggle);
+
+    function setOpen(open) {
+      document.body.dataset.navOpen = open ? "true" : "false";
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.setAttribute("aria-label", open ? "Menü schliessen" : "Menü öffnen");
+    }
+
+    toggle.addEventListener("click", function () {
+      setOpen(document.body.dataset.navOpen !== "true");
+    });
+
+    // Close on link click (so in-page nav doesn't leave the panel open).
+    document.querySelectorAll(".nav__links a, .nav__cta a").forEach(function (a) {
+      a.addEventListener("click", function () { setOpen(false); });
+    });
+
+    // Close on Escape for keyboard users.
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && document.body.dataset.navOpen === "true") {
+        setOpen(false);
+      }
+    });
+
+    // If the viewport grows past mobile, reset state.
+    var mq = window.matchMedia("(min-width: 761px)");
+    function onResize() {
+      if (mq.matches) setOpen(false);
+    }
+    if (typeof mq.addEventListener === "function") {
+      mq.addEventListener("change", onResize);
+    } else if (typeof mq.addListener === "function") {
+      mq.addListener(onResize);
+    }
+  }
+
   /* ───── 1. Copy-to-clipboard buttons on /kontakt/ ──────────── */
   document.querySelectorAll(".copy-btn").forEach(function (btn) {
     var label = btn.querySelector(".copy-btn__state");
