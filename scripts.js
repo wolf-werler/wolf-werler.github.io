@@ -1,16 +1,8 @@
 /* Wolf · Werler — shared client-side glue.
-   Loaded on every page. Each block self-skips if its targets aren't present. */
-
-// Self-hosted fonts (replaces the Google Fonts <link> tags).
-import "@fontsource/instrument-serif/400.css";
-import "@fontsource/instrument-serif/400-italic.css";
-import "@fontsource/manrope/300.css";
-import "@fontsource/manrope/400.css";
-import "@fontsource/manrope/500.css";
-import "@fontsource/manrope/600.css";
-import "@fontsource/manrope/700.css";
-import "@fontsource/jetbrains-mono/400.css";
-import "@fontsource/jetbrains-mono/500.css";
+   Loaded on every page. Each block self-skips if its targets aren't present.
+   Fonts are loaded via /fonts.css linked from each page's <head> so this
+   script stays plain ES (no bare-specifier imports that break without a
+   bundler). */
 
 (function () {
   /* ───── 1. Copy-to-clipboard buttons on /kontakt/ ──────────── */
