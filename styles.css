@@ -179,8 +179,26 @@ img,svg{ display:block; max-width:100%; }
 .nav__cta .btn{ padding: 10px 18px; font-size: 13px; }
 
 @media (max-width: 760px){
-  .nav__links{ display: none; }
-  .nav__inner{ grid-template-columns: 1fr auto; }
+  /* Two-row mobile header: wordmark + Anfragen on row 1, nav links
+     wrap freely on row 2. The site-logo image (outside .nav) sits
+     above this whole block as the third stacked element. */
+  .nav__inner{
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    row-gap: 14px;
+  }
+  .nav__mark{ grid-row: 1; grid-column: 1; }
+  .nav__cta{ grid-row: 1; grid-column: 2; }
+  .nav__links{
+    display: flex;
+    grid-row: 2;
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+  }
+  /* The .active underline sits closer to the link on mobile. */
+  .nav__links a.active::after{ bottom: -4px; }
 }
 
 /* ────────────────────────────────────────────────────────────
