@@ -78,27 +78,52 @@
       }
     });
 
-    // On mobile, move .nav__cta to the end of .nav__links so the
-    // Schliessen button flows immediately after Kontakt with no gap.
-    // On desktop, put it back as a direct child of .nav__inner.
+    // On mobile the menu becomes a full-height overlay panel. Because .nav
+    // carries a backdrop-filter — which makes it the containing block for
+    // any fixed-positioned descendant in iOS Safari / Chrome — a panel left
+    // inside .nav would be sized against the ~70px header box instead of the
+    // viewport, collapsing it to a sliver and letting the page bleed through.
+    // We sidestep that by hoisting the panel up to <body> on mobile, where
+    // the viewport is the containing block (same trick as .nav__backdrop).
+    // The CTA rides along inside the panel so "Schliessen" sits right after
+    // the last link. On desktop everything goes back into .nav__inner so the
+    // centered grid layout is unchanged.
+    var navEl = document.querySelector(".nav");
     var navLinksEl = document.querySelector(".nav__links");
     var navCtaEl = document.querySelector(".nav__cta");
-    function syncCtaPlacement(isMobile) {
-      if (!navLinksEl || !navCtaEl) return;
+
+    function syncMenuPlacement(isMobile) {
+      if (!navLinksEl) return;
       if (isMobile) {
-        if (navCtaEl.parentNode !== navLinksEl) navLinksEl.appendChild(navCtaEl);
+        if (navLinksEl.parentNode !== document.body) document.body.appendChild(navLinksEl);
+        if (navCtaEl && navCtaEl.parentNode !== navLinksEl) navLinksEl.appendChild(navCtaEl);
       } else {
-        if (navCtaEl.parentNode !== navInner) navInner.appendChild(navCtaEl);
+        if (navLinksEl.parentNode !== navInner) navInner.appendChild(navLinksEl);
+        if (navCtaEl && navCtaEl.parentNode !== navInner) navInner.appendChild(navCtaEl);
       }
     }
 
-    // If the viewport grows past mobile, reset state + reparent the CTA.
+    // The overlay starts flush under the header, whose height shifts with the
+    // iOS status-bar safe-area inset. Measure it instead of hard-coding a
+    // magic number, and expose it to CSS as --nav-h.
+    function setNavHeight() {
+      if (navEl) {
+        document.documentElement.style.setProperty("--nav-h", navEl.offsetHeight + "px");
+      }
+    }
+
+    // If the viewport grows past mobile, reset state + reparent everything.
     var mq = window.matchMedia("(min-width: 761px)");
-    syncCtaPlacement(!mq.matches);
+    syncMenuPlacement(!mq.matches);
+    setNavHeight();
     function onResize() {
       if (mq.matches) setOpen(false);
-      syncCtaPlacement(!mq.matches);
+      syncMenuPlacement(!mq.matches);
+      setNavHeight();
     }
+    window.addEventListener("resize", setNavHeight);
+    window.addEventListener("orientationchange", setNavHeight);
+    window.addEventListener("load", setNavHeight);
     if (typeof mq.addEventListener === "function") {
       mq.addEventListener("change", onResize);
     } else if (typeof mq.addListener === "function") {
