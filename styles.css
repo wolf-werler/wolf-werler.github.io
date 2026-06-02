@@ -674,3 +674,16 @@ img,svg{ display:block; max-width:100%; }
 .foot ::selection{ background: var(--fog); color: var(--ink); }
 .contact ::-moz-selection,
 .foot ::-moz-selection{ background: var(--fog); color: var(--ink); }
+
+/* Small W emblem above the nav on some pages — kept tiny so the
+   200×200 SVG doesn't render at full viewport width. */
+.site-logo{
+  display: block;
+  width: 56px;
+  height: 56px;
+  margin: 14px 0 0 var(--gutter);
+}
+.site-logo img{ width: 100%; height: 100%; display: block; }
+@media (max-width: 640px){
+  .site-logo{ width: 44px; height: 44px; margin-top: 10px; }
+}
