@@ -16,20 +16,52 @@
     toggle.innerHTML = '<span></span><span></span>';
     navInner.appendChild(toggle);
 
+    // The bottom CTA in the menu panel doubles as the close button while
+    // the menu is open. We swap its text + href and intercept the click.
+    var ctaLink = document.querySelector(".nav__cta .btn");
+    var ctaOriginalText = ctaLink ? ctaLink.textContent.trim() : "";
+    var ctaOriginalHref = ctaLink ? ctaLink.getAttribute("href") : "";
+
     function setOpen(open) {
       document.body.dataset.navOpen = open ? "true" : "false";
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
       toggle.setAttribute("aria-label", open ? "Menü schliessen" : "Menü öffnen");
+      if (ctaLink) {
+        if (open) {
+          ctaLink.textContent = "Schliessen";
+          ctaLink.setAttribute("href", "#");
+          ctaLink.setAttribute("aria-label", "Menü schliessen");
+          ctaLink.dataset.navClose = "true";
+        } else {
+          ctaLink.textContent = ctaOriginalText;
+          ctaLink.setAttribute("href", ctaOriginalHref);
+          ctaLink.removeAttribute("aria-label");
+          delete ctaLink.dataset.navClose;
+        }
+      }
     }
 
     toggle.addEventListener("click", function () {
       setOpen(document.body.dataset.navOpen !== "true");
     });
 
-    // Close on link click (so in-page nav doesn't leave the panel open).
-    document.querySelectorAll(".nav__links a, .nav__cta a").forEach(function (a) {
+    // Nav links: close the panel after the navigation triggers.
+    document.querySelectorAll(".nav__links a").forEach(function (a) {
       a.addEventListener("click", function () { setOpen(false); });
     });
+
+    // CTA: when in close-mode, swallow the click and just close.
+    // Otherwise navigate to /kontakt/ and close the panel.
+    if (ctaLink) {
+      ctaLink.addEventListener("click", function (e) {
+        if (ctaLink.dataset.navClose === "true") {
+          e.preventDefault();
+          setOpen(false);
+          return;
+        }
+        setOpen(false);
+      });
+    }
 
     // Close on Escape for keyboard users.
     document.addEventListener("keydown", function (e) {
