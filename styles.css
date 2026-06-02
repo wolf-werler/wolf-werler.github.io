@@ -291,6 +291,22 @@ body[data-nav-open="true"] .nav__toggle span:nth-child(2){
     font-size: 14px;
   }
 
+  /* Click-catcher behind the panels — taps anywhere in the visible gap
+     between the top links and the bottom CTA close the menu. */
+  .nav__backdrop{
+    position: fixed;
+    inset: 0;
+    z-index: 47;
+    background: color-mix(in oklab, var(--ink) 14%, transparent);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .22s ease;
+  }
+  body[data-nav-open="true"] .nav__backdrop{
+    opacity: 1;
+    pointer-events: auto;
+  }
+
   body[data-nav-open="true"] .nav__links,
   body[data-nav-open="true"] .nav__cta{
     opacity: 1;

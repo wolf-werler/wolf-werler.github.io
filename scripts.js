@@ -41,6 +41,14 @@
       }
     }
 
+    // Click-catcher backdrop for the open menu — tap anywhere outside
+    // the panels (in the visible gap) to dismiss.
+    var backdrop = document.createElement("div");
+    backdrop.className = "nav__backdrop";
+    backdrop.setAttribute("aria-hidden", "true");
+    document.body.appendChild(backdrop);
+    backdrop.addEventListener("click", function () { setOpen(false); });
+
     toggle.addEventListener("click", function () {
       setOpen(document.body.dataset.navOpen !== "true");
     });
