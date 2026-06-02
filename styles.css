@@ -143,7 +143,10 @@ img,svg{ display:block; max-width:100%; }
   position: sticky;
   top: 0;
   z-index: 50;
-  padding-block: 22px;
+  /* Top padding extends into the iOS status-bar safe area so the
+     translucent fog backdrop covers that strip too. */
+  padding-top: calc(22px + env(safe-area-inset-top, 0px));
+  padding-bottom: 22px;
   border-bottom: 1px solid var(--mist-30);
   background-color: color-mix(in oklab, var(--fog) 88%, transparent);
   backdrop-filter: saturate(140%) blur(10px);
