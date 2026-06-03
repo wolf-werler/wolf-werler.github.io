@@ -260,9 +260,13 @@ body[data-nav-open="true"] .nav__toggle span:nth-child(3){
     align-items: stretch;
     gap: 0;
     overflow-y: auto;
-    background: color-mix(in oklab, var(--fog) 97%, transparent);
-    backdrop-filter: saturate(140%) blur(14px);
-    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    /* Fully opaque so page content never bleeds through the open panel.
+       A translucent fill + backdrop-filter looked clean where the blur is
+       supported, but degrades to see-through on browsers that drop the
+       filter (and even where supported the blur didn't fully hide the
+       hero/footer text underneath). The page sits on the same --fog, so a
+       solid fill reads identically while guaranteeing opacity. */
+    background: var(--fog);
     border-top: 1px solid var(--mist-30);
     opacity: 0;
     pointer-events: none;
