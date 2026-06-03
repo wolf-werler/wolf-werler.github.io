@@ -10,8 +10,11 @@
   <meta name="description" content="Impressum und Anbieterkennzeichnung von Wolf · Werler." />
 
   <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
 </head>
 <body>
+
+  <a class="skip-link" href="#main">Zum Inhalt</a>
 
   <a class="site-logo" href="/" aria-label="Wolf · Werler — Startseite">
     <img src="/logo.svg" alt="">
@@ -34,16 +37,17 @@
         <a href="/kontakt/" class="btn">Anfragen</a>
       </div>
     </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
   </nav>
 
-  <main>
+  <main id="main">
 
     <section class="legal">
       <div class="wrap">
-        <span class="label">Rechtliches</span>
-        <h2>Impressum.</h2>
+        <span class="label" data-reveal>Rechtliches</span>
+        <h2 data-reveal>Impressum.</h2>
 
-        <div class="legal__body">
+        <div class="legal__body" data-reveal>
           <p class="legal__notice">
             Entwurf. Vor Veröffentlichung mit den tatsächlichen Angaben
             (Rechtsform, vollständige Geschäftsadresse, UID, verantwortliche
@@ -123,10 +127,14 @@
   <!-- FOOTER -->
   <footer class="foot">
     <div class="wrap">
+      <div class="foot__signature" aria-hidden="true">
+        <p class="foot__signature-mark">wolf<span class="ampersand">·</span>werler</p>
+        <p class="foot__signature-byline">Atelier · Zürich · MMXXVI</p>
+      </div>
       <div class="foot__inner">
         <div>
           <div class="foot__mark">Wolf<em>·</em>Werler</div>
-          <p class="label" style="margin-top:10px; color: var(--mist)">
+          <p class="label label--foot">
             Atelier · Zürich · Schweiz
           </p>
         </div>

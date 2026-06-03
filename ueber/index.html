@@ -10,8 +10,11 @@
   <meta name="description" content="Drei Personen, klare Rollen. Levin Wolf, Paul Ernst Werler und Isaac Lins." />
 
   <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
 </head>
 <body>
+
+  <a class="skip-link" href="#main">Zum Inhalt</a>
 
   <a class="site-logo" href="/" aria-label="Wolf · Werler — Startseite">
     <img src="/logo.svg" alt="">
@@ -34,19 +37,20 @@
         <a href="/kontakt/" class="btn">Anfragen</a>
       </div>
     </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
   </nav>
 
-  <main>
+  <main id="main">
 
     <!-- TEAM -->
     <section class="team">
       <div class="wrap">
-        <span class="label">Über uns</span>
-        <h2>Klein genug, dass Sie<br/>wissen, <em>wer Ihre Seite kennt</em>.</h2>
+        <span class="label" data-reveal>Über uns</span>
+        <h2 data-reveal>Klein genug, dass Sie<br/>wissen, <em>wer Ihre Seite kennt</em>.</h2>
 
         <div class="team__grid">
 
-          <article class="person">
+          <article class="person" data-reveal>
             <div class="person__frame">
               <span class="person__corner">N · 01</span>
               <span class="person__corner-r">2026</span>
@@ -60,7 +64,7 @@
             </p>
           </article>
 
-          <article class="person">
+          <article class="person" data-reveal>
             <div class="person__frame">
               <span class="person__corner">N · 02</span>
               <span class="person__corner-r">2026</span>
@@ -74,7 +78,7 @@
             </p>
           </article>
 
-          <article class="person">
+          <article class="person" data-reveal>
             <div class="person__frame">
               <span class="person__corner">N · 03</span>
               <span class="person__corner-r">2026</span>
@@ -97,10 +101,14 @@
   <!-- FOOTER -->
   <footer class="foot">
     <div class="wrap">
+      <div class="foot__signature" aria-hidden="true">
+        <p class="foot__signature-mark">wolf<span class="ampersand">·</span>werler</p>
+        <p class="foot__signature-byline">Atelier · Zürich · MMXXVI</p>
+      </div>
       <div class="foot__inner">
         <div>
           <div class="foot__mark">Wolf<em>·</em>Werler</div>
-          <p class="label" style="margin-top:10px; color: var(--mist)">
+          <p class="label label--foot">
             Atelier · Zürich · Schweiz
           </p>
         </div>

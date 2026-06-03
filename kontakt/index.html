@@ -10,8 +10,11 @@
   <meta name="description" content="Erzählen Sie uns, was ansteht. Wir melden uns innert eines Arbeitstages." />
 
   <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
 </head>
 <body>
+
+  <a class="skip-link" href="#main">Zum Inhalt</a>
 
   <a class="site-logo" href="/" aria-label="Wolf · Werler — Startseite">
     <img src="/logo.svg" alt="">
@@ -34,17 +37,18 @@
         <a href="/kontakt/" class="btn">Anfragen</a>
       </div>
     </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
   </nav>
 
-  <main>
+  <main id="main">
 
     <!-- CONTACT -->
     <section id="site-contact" class="contact">
       <div class="wrap contact__grid">
         <div>
-          <span class="label">Kontakt</span>
-          <h2>Erzählen Sie<br/>uns kurz, was<br/><em>ansteht</em>.</h2>
-          <p class="contact__lede">
+          <span class="label" data-reveal>Kontakt</span>
+          <h2 data-reveal>Erzählen Sie<br/>uns kurz, was<br/><em>ansteht</em>.</h2>
+          <p class="contact__lede" data-reveal>
             Wir melden uns innert eines Arbeitstages. Kein
             Anrufzentrum, kein Funnel. Nur eine kurze Antwort
             von einem der drei Namen oben.
@@ -80,7 +84,7 @@
           </dl>
         </div>
 
-        <form class="contact__form" id="contactForm" novalidate>
+        <form class="contact__form" id="contactForm" novalidate data-reveal>
           <div class="field">
             <label for="site-name">Name</label>
             <input id="site-name" name="name" type="text" autocomplete="name" required maxlength="200" placeholder="Vorname Nachname" />
@@ -98,7 +102,7 @@
             <textarea id="site-msg" name="message" required rows="4" maxlength="5000" placeholder="Ein neuer Auftritt, eine Pflegeübernahme, eine Frage."></textarea>
           </div>
 
-          <div aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0; pointer-events:none;">
+          <div class="honeypot" aria-hidden="true">
             <label for="site-website">Website</label>
             <input id="site-website" name="website" type="text" tabindex="-1" autocomplete="off" />
           </div>
@@ -106,12 +110,12 @@
           <input type="hidden" name="t" value="" />
 
 
-          <div class="btn-row" style="margin-top: 8px; align-items: center;">
+          <div class="btn-row btn-row--baseline">
             <button type="submit" class="btn btn--light" id="contactSubmit">
               <span>Senden</span>
               <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </button>
-            <span class="label" id="contactStatus" aria-live="polite" style="color: var(--mist)">Antwort innert 24 h</span>
+            <span class="label" id="contactStatus" aria-live="polite">Antwort innert 24 h</span>
           </div>
           <p class="contact__notice" hidden>
             Danke, Ihre Anfrage ist angekommen. <strong>Wir melden uns innert 24 Stunden bei Ihnen.</strong>
@@ -125,10 +129,14 @@
   <!-- FOOTER -->
   <footer class="foot">
     <div class="wrap">
+      <div class="foot__signature" aria-hidden="true">
+        <p class="foot__signature-mark">wolf<span class="ampersand">·</span>werler</p>
+        <p class="foot__signature-byline">Atelier · Zürich · MMXXVI</p>
+      </div>
       <div class="foot__inner">
         <div>
           <div class="foot__mark">Wolf<em>·</em>Werler</div>
-          <p class="label" style="margin-top:10px; color: var(--mist)">
+          <p class="label label--foot">
             Atelier · Zürich · Schweiz
           </p>
         </div>

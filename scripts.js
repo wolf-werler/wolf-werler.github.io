@@ -200,7 +200,52 @@
     }
   }
 
-  /* ───── 4. /kontakt/ form: time-trap timestamp + submit handler ── */
+  /* ───── 4. Scroll-driven reveal for [data-reveal] elements ───── */
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var revealTargets = document.querySelectorAll("[data-reveal]");
+  if (revealTargets.length) {
+    if (reduce || typeof IntersectionObserver !== "function") {
+      revealTargets.forEach(function (el) { el.classList.add("is-revealed"); });
+    } else {
+      // Stagger sibling order by setting --i on elements that don't already
+      // carry one, so HTML can stay clean. Reveal triggers once per element.
+      revealTargets.forEach(function (el, i) {
+        if (!el.style.getPropertyValue("--i")) el.style.setProperty("--i", String(i % 6));
+      });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-revealed");
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -10% 0px", threshold: 0.08 });
+      revealTargets.forEach(function (el) { io.observe(el); });
+    }
+  }
+
+  /* ───── 5. Scroll progress hairline under the nav ───── */
+  var progress = document.querySelector(".scroll-progress");
+  if (progress && !reduce) {
+    var raf = null;
+    function updateProgress() {
+      raf = null;
+      var doc = document.documentElement;
+      var max = (doc.scrollHeight - doc.clientHeight);
+      var pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+      if (pct < 0) pct = 0;
+      if (pct > 100) pct = 100;
+      progress.style.width = pct.toFixed(2) + "%";
+    }
+    function onScroll() {
+      if (raf === null) raf = window.requestAnimationFrame(updateProgress);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    updateProgress();
+  }
+
+  /* ───── 6. /kontakt/ form: time-trap timestamp + submit handler ── */
   var form = document.getElementById("contactForm");
   if (form) {
     var tField = form.querySelector('[name="t"]');

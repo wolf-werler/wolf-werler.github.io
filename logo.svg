@@ -14,10 +14,7 @@
   <g fill="none" stroke="#324C5B" stroke-width="13" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="8">
     <polyline points="50,60 80,125 100,75 120,125 150,60"></polyline>
   </g>
-    <polygon points=" 100,125 89,120 100,92 111,120 " fill="#567C91"></polygon>
-  <g fill="none" stroke="#324C5B" stroke-width="13" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="8">
-    <polyline points="50,60 80,125 100,75 120,125 150,60"></polyline>
-  </g>
+  <polygon points="100,125 89,120 100,92 111,120" fill="#567C91"></polygon>
   <g font-family="'JetBrains Mono', ui-monospace, Menlo, monospace" font-size="8" letter-spacing="2.2" fill="#324C5B">
     <text x="100" y="166" text-anchor="middle">WOLF · WERLER</text>
   </g>

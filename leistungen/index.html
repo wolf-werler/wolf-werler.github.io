@@ -10,8 +10,11 @@
   <meta name="description" content="Drei Dinge, vollständig. Gestaltung, Hosting und Verwaltung von Webseiten für Schweizer KMU." />
 
   <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
 </head>
 <body>
+
+  <a class="skip-link" href="#main">Zum Inhalt</a>
 
   <a class="site-logo" href="/" aria-label="Wolf · Werler — Startseite">
     <img src="/logo.svg" alt="">
@@ -34,17 +37,18 @@
         <a href="/kontakt/" class="btn">Anfragen</a>
       </div>
     </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
   </nav>
 
-  <main>
+  <main id="main">
 
     <!-- LEISTUNGEN -->
     <section class="services">
       <div class="wrap">
-        <span class="label">Leistungen</span>
+        <span class="label" data-reveal>Leistungen</span>
         <div class="services__head">
-          <h2>Drei Dinge,<br/><em>vollständig</em>.</h2>
-          <p class="services__intro">
+          <h2 data-reveal>Drei Dinge,<br/><em>vollständig</em>.</h2>
+          <p class="services__intro" data-reveal>
             Wir teilen unsere Arbeit nicht in zwölf Pakete auf. Was wir
             anbieten, decken wir bis zum letzten Tag des Auftritts ab.
             Gestaltung, Hosting und das langsame, geduldige Pflegen
@@ -53,7 +57,7 @@
         </div>
 
         <div class="services__grid">
-          <article class="service">
+          <article class="service" data-reveal>
             <span class="service__num">01</span>
             <div class="service__icon" aria-hidden="true">
               <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.25">
@@ -74,7 +78,7 @@
             </ul>
           </article>
 
-          <article class="service">
+          <article class="service" data-reveal>
             <span class="service__num">02</span>
             <div class="service__icon" aria-hidden="true">
               <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.25">
@@ -95,7 +99,7 @@
             </ul>
           </article>
 
-          <article class="service">
+          <article class="service" data-reveal>
             <span class="service__num">03</span>
             <div class="service__icon" aria-hidden="true">
               <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.25">
@@ -121,10 +125,14 @@
   <!-- FOOTER -->
   <footer class="foot">
     <div class="wrap">
+      <div class="foot__signature" aria-hidden="true">
+        <p class="foot__signature-mark">wolf<span class="ampersand">·</span>werler</p>
+        <p class="foot__signature-byline">Atelier · Zürich · MMXXVI</p>
+      </div>
       <div class="foot__inner">
         <div>
           <div class="foot__mark">Wolf<em>·</em>Werler</div>
-          <p class="label" style="margin-top:10px; color: var(--mist)">
+          <p class="label label--foot">
             Atelier · Zürich · Schweiz
           </p>
         </div>

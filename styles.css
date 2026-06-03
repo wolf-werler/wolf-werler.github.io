@@ -643,6 +643,11 @@ body[data-nav-open="true"] .nav__toggle span:nth-child(3){
   font-family: var(--mono); font-size: 12px;
   letter-spacing: .04em; color: var(--ink);
 }
+.legal__stamp{
+  margin-top: 32px;
+  color: var(--slate);
+  font-size: 13px;
+}
 
 /* ────────────────────────────────────────────────────────────
    CONTACT
@@ -829,3 +834,226 @@ body[data-nav-open="true"] .nav__toggle span:nth-child(3){
   .site-logo img{ width: 100%; height: 100%; display: block; }
 }
 .site-logo{ display: none; }
+
+/* ────────────────────────────────────────────────────────────
+   REDESIGN UPGRADES
+   Surgical polish on top of the Hochnebel system — motion,
+   tactile feedback, microtypography, closing signature.
+   ──────────────────────────────────────────────────────────── */
+
+/* Tabular figures wherever numerals carry weight in the layout. */
+.label,
+.refs__row .num,
+.refs__row .year,
+.service__num,
+.person__corner,
+.person__corner-r,
+.hero__meta dt,
+.hero__meta dd,
+.foot__legal{
+  font-variant-numeric: tabular-nums;
+}
+
+/* Headlines pretty-wrap so single-word last lines don't strand. */
+.hero h1,
+.services__head h2,
+.team h2,
+.refs h2,
+.legal h2,
+.contact h2,
+.service h3,
+.person__name{
+  text-wrap: balance;
+}
+
+/* Hairlines that align icons to the optical baseline of the text. */
+.btn{ position: relative; }
+.btn__arrow{
+  transition: transform .25s ease;
+  will-change: transform;
+}
+@media (hover: hover){
+  .btn:hover .btn__arrow{ transform: translateX(3px); }
+}
+.btn:active{ transform: translateY(1px); }
+.btn:focus-visible{ outline: 2px solid var(--ink); outline-offset: 3px; }
+.btn--light:focus-visible,
+.team .btn:focus-visible,
+.contact .btn:focus-visible{ outline-color: var(--fog); }
+
+/* Refs row — arrow nudges on hover. */
+.refs__open svg{ transition: transform .25s ease; }
+@media (hover: hover){
+  .refs__open:hover svg{ transform: translate(2px, -2px); }
+}
+.refs__open:active{ transform: translateY(1px); }
+.refs__open:focus-visible{ outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* Copy button — press feedback. */
+.copy-btn:active{ transform: translateY(1px); }
+
+/* Nav-mark dot — barely-there liveness. */
+@keyframes ww-dot-pulse{
+  0%, 100% { opacity: 1; transform: translateY(-2px) scale(1); }
+  50%      { opacity: .55; transform: translateY(-2px) scale(.85); }
+}
+.nav__mark .dot{
+  animation: ww-dot-pulse 7s ease-in-out infinite;
+}
+
+/* Hero radial accent is already there — add a very faint mesh streak
+   so the field doesn't read perfectly even. */
+.hero::after{
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(40% 30% at 22% 38%, color-mix(in oklab, var(--slate) 10%, transparent) 0%, transparent 70%);
+  mix-blend-mode: multiply;
+  opacity: .9;
+}
+.hero__inner{ z-index: 1; }
+
+/* Hero meta — italicised year stamp (replaces a stray inline style). */
+.hero__meta dd em{
+  font-style: italic;
+  color: var(--slate);
+}
+
+/* Utility used by the footer label that previously carried an inline
+   margin + colour. Same look, no style="..." in HTML. */
+.label--foot{
+  margin-top: 10px;
+  color: var(--mist);
+}
+
+/* Contact form: the submit row used inline margin + align. */
+.btn-row--baseline{
+  margin-top: 8px;
+  align-items: center;
+}
+#contactStatus{ color: var(--mist); }
+
+/* Honeypot field — was inline-styled and aria-hidden. Class form. */
+.honeypot{
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ───── Scroll progress hairline under the nav ───── */
+.scroll-progress{
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 1px;
+  width: 0%;
+  background: var(--slate);
+  opacity: .6;
+  pointer-events: none;
+}
+
+/* ───── Skip-to-content link ───── */
+.skip-link{
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  padding: 10px 14px;
+  background: var(--ink);
+  color: var(--fog);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  border-radius: var(--r-2);
+  transform: translateY(-200%);
+  transition: transform .2s ease;
+}
+.skip-link:focus{
+  transform: translateY(0);
+  outline: 2px solid var(--fog);
+  outline-offset: 2px;
+}
+
+/* ───── Scroll-reveal: opt-in via [data-reveal] ───── */
+[data-reveal]{
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity .8s cubic-bezier(.2,.7,.2,1),
+    transform .8s cubic-bezier(.2,.7,.2,1);
+  transition-delay: calc(var(--i, 0) * 70ms);
+  will-change: opacity, transform;
+}
+[data-reveal].is-revealed{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ───── Closing signature wordmark above the footer columns ───── */
+.foot__signature{
+  position: relative;
+  padding: clamp(36px, 6vw, 72px) 0 clamp(28px, 5vw, 56px);
+  border-bottom: 1px solid color-mix(in oklab, var(--fog) 10%, transparent);
+  margin-bottom: clamp(24px, 4vw, 44px);
+  overflow: hidden;
+}
+.foot__signature-mark{
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(64px, 16vw, 220px);
+  line-height: .85;
+  letter-spacing: -.025em;
+  color: color-mix(in oklab, var(--fog) 22%, transparent);
+  margin: 0;
+  white-space: nowrap;
+  /* Keep it within the container even when nowrap'd; clip the right
+     edge so it reads like an editorial bleed without a horizontal
+     scroll. */
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: clip;
+}
+.foot__signature-mark .ampersand{
+  font-style: normal;
+  color: color-mix(in oklab, var(--mist) 70%, transparent);
+  margin-inline: .12em;
+}
+.foot__signature-byline{
+  margin: clamp(14px, 1.6vw, 20px) 0 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--mist) 80%, transparent);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.foot__signature-byline::before{
+  content: "";
+  flex: 0 0 48px;
+  height: 1px;
+  background: color-mix(in oklab, var(--fog) 22%, transparent);
+}
+@media (max-width: 620px){
+  .foot__signature-mark{ font-size: clamp(54px, 18vw, 110px); }
+}
+
+/* ───── Reduced motion: kill everything that moves ───── */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    transition-delay: 0ms !important;
+  }
+  [data-reveal]{ opacity: 1; transform: none; }
+  .nav__mark .dot{ animation: none; }
+}

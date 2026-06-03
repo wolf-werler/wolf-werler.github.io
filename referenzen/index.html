@@ -10,8 +10,11 @@
   <meta name="description" content="Auftritte, die wir nicht laut machen. Eine Auswahl aktueller Arbeiten." />
 
   <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
 </head>
 <body>
+
+  <a class="skip-link" href="#main">Zum Inhalt</a>
 
   <a class="site-logo" href="/" aria-label="Wolf · Werler — Startseite">
     <img src="/logo.svg" alt="">
@@ -34,18 +37,19 @@
         <a href="/kontakt/" class="btn">Anfragen</a>
       </div>
     </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
   </nav>
 
-  <main>
+  <main id="main">
 
     <!-- REFERENCES -->
     <section class="refs">
       <div class="wrap">
-        <span class="label">Referenzen</span>
-        <h2>Auftritte, die wir<br/><em>nicht laut machen</em>.</h2>
+        <span class="label" data-reveal>Referenzen</span>
+        <h2 data-reveal>Auftritte, die wir<br/><em>nicht laut machen</em>.</h2>
 
         <div class="refs__list">
-          <div class="refs__row">
+          <div class="refs__row" data-reveal>
             <span class="num">01</span>
             <span class="name">Phasuk <em>Velo &amp; Mofa</em></span>
             <span class="kind">Velowerkstatt</span>
@@ -55,7 +59,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
             </a>
           </div>
-          <div class="refs__row">
+          <div class="refs__row" data-reveal>
             <span class="num">02</span>
             <span class="name">Galaxy <em>Nails</em></span>
             <span class="kind">Nagelstudio</span>
@@ -65,7 +69,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
             </a>
           </div>
-          <div class="refs__row">
+          <div class="refs__row" data-reveal>
             <span class="num">03</span>
             <span class="name">Power<em>usermail</em></span>
             <span class="kind">Inboxwerkzeug</span>
@@ -75,7 +79,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
             </a>
           </div>
-          <div class="refs__row refs__row--input">
+          <div class="refs__row refs__row--input" data-reveal>
             <span class="num">04</span>
             <span class="name">Dein <em>Projekt?</em></span>
             <input class="refs__input" type="text" data-refs-input placeholder="Worum geht es?" aria-label="Dein Projekt kurz beschreiben"/>
@@ -93,10 +97,14 @@
   <!-- FOOTER -->
   <footer class="foot">
     <div class="wrap">
+      <div class="foot__signature" aria-hidden="true">
+        <p class="foot__signature-mark">wolf<span class="ampersand">·</span>werler</p>
+        <p class="foot__signature-byline">Atelier · Zürich · MMXXVI</p>
+      </div>
       <div class="foot__inner">
         <div>
           <div class="foot__mark">Wolf<em>·</em>Werler</div>
-          <p class="label" style="margin-top:10px; color: var(--mist)">
+          <p class="label label--foot">
             Atelier · Zürich · Schweiz
           </p>
         </div>

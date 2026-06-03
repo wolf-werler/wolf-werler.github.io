@@ -10,8 +10,11 @@
   <meta name="description" content="Wolf · Werler gestaltet, hostet und pflegt Webseiten für Schweizer KMU. Klein, langlebig, präzise." />
 
   <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
 </head>
 <body>
+
+  <a class="skip-link" href="#main">Zum Inhalt</a>
 
   <a class="site-logo" href="/" aria-label="Wolf · Werler — Startseite">
     <img src="/logo.svg" alt="">
@@ -34,24 +37,25 @@
         <a href="/kontakt/" class="btn">Anfragen</a>
       </div>
     </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
   </nav>
 
-  <main>
+  <main id="main">
 
     <!-- HERO -->
     <header class="hero">
       <div class="wrap hero__inner">
-        <div class="hero__eyebrow">
+        <div class="hero__eyebrow" data-reveal>
           <span class="hair-line" aria-hidden="true"></span>
           <span class="label label--ink">Atelier für Webgestaltung &amp; Verwaltung</span>
         </div>
-        <h1>Webseiten, die <em>still</em> ihre Arbeit tun.</h1>
-        <p class="hero__lede">
+        <h1 data-reveal>Webseiten, die <em>still</em> ihre Arbeit tun.</h1>
+        <p class="hero__lede" data-reveal>
           Wir gestalten, hosten und pflegen Auftritte für Schweizer
           KMU. Klein, langlebig, präzise. So wartungsarm, dass Sie
           uns vergessen können.
         </p>
-        <div class="hero__cta">
+        <div class="hero__cta" data-reveal>
           <a href="/kontakt/" class="btn">
             Projekt besprechen
             <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -59,14 +63,14 @@
           <a href="/referenzen/" class="btn btn--ghost">Unsere Arbeit ansehen</a>
         </div>
 
-        <dl class="hero__meta">
+        <dl class="hero__meta" data-reveal>
           <div>
             <dt>Sitz</dt>
             <dd>Zürich · Schweiz</dd>
           </div>
           <div>
             <dt>Im Atelier</dt>
-            <dd>Seit <em style="font-style:italic;color:var(--slate)">2022</em></dd>
+            <dd>Seit <em>2022</em></dd>
           </div>
           <div>
             <dt>Auftritte in Pflege</dt>
@@ -81,10 +85,14 @@
   <!-- FOOTER -->
   <footer class="foot">
     <div class="wrap">
+      <div class="foot__signature" aria-hidden="true">
+        <p class="foot__signature-mark">wolf<span class="ampersand">·</span>werler</p>
+        <p class="foot__signature-byline">Atelier · Zürich · MMXXVI</p>
+      </div>
       <div class="foot__inner">
         <div>
           <div class="foot__mark">Wolf<em>·</em>Werler</div>
-          <p class="label" style="margin-top:10px; color: var(--mist)">
+          <p class="label label--foot">
             Atelier · Zürich · Schweiz
           </p>
         </div>
